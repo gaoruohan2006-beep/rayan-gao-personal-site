@@ -8,19 +8,13 @@ workflow. The site intentionally uses only verified profile details.
 
 ## Live site
 
-- [Public website](https://rayan-gao-space.gaoruohan2006.chatgpt.site)
-- [GitHub Pages mirror](https://gaoruohan2006-beep.github.io/rayan-gao-personal-site/)
+- [GitHub Pages Sites](https://gaoruohan2006-beep.github.io/rayan-gao-personal-site/)
 
 ## What is included
 
 - Responsive academic homepage with a persistent author profile
 - Unified Chinese and English modes with a remembered `中 / EN` switch
 - Separate Publications, Talks, Teaching, Portfolio, Blog, and CV routes
-- Circular profile artwork and verified public contact details
-- Embedded previews and downloads for the resume and two competition papers
-- Structured Statistics education, research interests, coursework, and awards
-- Honest academic empty states instead of fictional records
-- One-click email copy with a mail-client fallback
 - Reduced-motion support and keyboard-friendly navigation
 - Search and social-sharing metadata with an academic Open Graph image
 - Cloudflare Worker-compatible vinext build
@@ -56,13 +50,6 @@ The deployable output is generated in `dist/`.
 The main site copy and content slots live in `app/page.tsx`. Visual tokens,
 responsive rules, and motion preferences live in `app/globals.css`. Metadata
 and the social-preview configuration live in `app/layout.tsx`.
-
-Useful next additions:
-
-1. Add a fuller description of the carbon-emission time-lag research.
-2. Add public code repositories for the competition models when available.
-3. Add verified course, research, and software projects as they become available.
-4. Add future talks, publications, and writing without mixing competition work with formal publications.
 
 ## License
 
