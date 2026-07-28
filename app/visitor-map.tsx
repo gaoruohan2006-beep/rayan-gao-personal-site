@@ -1,7 +1,7 @@
 "use client";
 
 import { geoNaturalEarth1, geoPath } from "d3-geo";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { feature } from "topojson-client";
 import world from "world-atlas/countries-110m.json";
 import type { FeatureCollection, Geometry } from "geojson";
@@ -30,22 +30,11 @@ type VisitorResponse = {
 };
 
 export function VisitorMap() {
-  const trackerRef = useRef<HTMLDivElement>(null);
   const [points, setPoints] = useState<VisitorPoint[]>([]);
   const [count, setCount] = useState(0);
   const [available, setAvailable] = useState(true);
 
   useEffect(() => {
-    const host = trackerRef.current;
-    if (!host) return;
-
-    const tracker = document.createElement("script");
-    tracker.async = true;
-    tracker.src =
-      `${trackerOrigin}/api/embed/visitor-globe.js?site_id=${siteId}` +
-      "&map=flat&w=1&h=1&theme=ivory&speed=off";
-    host.appendChild(tracker);
-
     let active = true;
     async function loadPoints() {
       try {
@@ -77,7 +66,6 @@ export function VisitorMap() {
     return () => {
       active = false;
       window.clearInterval(refresh);
-      host.replaceChildren();
     };
   }, []);
 
@@ -137,8 +125,6 @@ export function VisitorMap() {
           <Localized zh="访客数据由 FeedPulse 提供 ↗" en="Visitor data by FeedPulse ↗" />
         </a>
       </div>
-
-      <div ref={trackerRef} className="visitor-map-tracker" aria-hidden="true" />
     </div>
   );
 }
