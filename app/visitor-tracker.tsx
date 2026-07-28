@@ -1,28 +1,40 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
-const siteId = "0b8c6518-924c-4dbd-994f-afaec8192b5a";
-const trackerOrigin = "https://visitor-tracker-129.emergent.host";
+const API_ORIGIN = "https://rayan-gao-space.gaoruohan2006.chatgpt.site";
+const VISITOR_ID_KEY = "rayan-gao-anonymous-visitor-id";
+
+function getApiOrigin() {
+  return window.location.hostname.endsWith("github.io") ? API_ORIGIN : "";
+}
+
+function getAnonymousVisitorId() {
+  const existing = window.localStorage.getItem(VISITOR_ID_KEY);
+  if (existing) return existing;
+
+  const id = window.crypto.randomUUID();
+  window.localStorage.setItem(VISITOR_ID_KEY, id);
+  return id;
+}
 
 export function VisitorTracker() {
-  const trackerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    const host = trackerRef.current;
-    if (!host) return;
+    const visitorId = getAnonymousVisitorId();
+    const path = window.location.pathname.replace(
+      /^\/rayan-gao-personal-site(?=\/|$)/,
+      "",
+    ) || "/";
 
-    const tracker = document.createElement("script");
-    tracker.async = true;
-    tracker.src =
-      `${trackerOrigin}/api/embed/traffic-feed.js?site_id=${siteId}` +
-      "&rows=1&nobot=1";
-    host.appendChild(tracker);
-
-    return () => {
-      host.replaceChildren();
-    };
+    void fetch(`${getApiOrigin()}/api/visitors`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ visitorId, path }),
+      keepalive: true,
+    }).catch(() => {
+      // Visitor analytics must never affect the browsing experience.
+    });
   }, []);
 
-  return <div ref={trackerRef} className="visitor-map-tracker" aria-hidden="true" />;
+  return null;
 }

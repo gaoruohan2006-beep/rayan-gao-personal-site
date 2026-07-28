@@ -280,6 +280,12 @@ function CvPage() {
 
 const updateEntries = [
   {
+    zhTitle: "启用自托管访客地图",
+    enTitle: "Enabled a self-hosted visitor map",
+    zhBody: "移除第三方地图依赖，改由网站自行记录匿名城市级访问并生成红点，不保存 IP 或精确地址。",
+    enBody: "Removed the third-party map dependency and now generate markers from anonymous city-level visits without storing IPs or precise addresses.",
+  },
+  {
     zhTitle: "修正访客统计数据链路",
     enTitle: "Corrected visitor analytics",
     zhBody: "修正全站访客数据记录，使地图红点与计数能够随实际访问更新。",

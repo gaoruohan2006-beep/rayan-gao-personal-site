@@ -7,8 +7,7 @@ import world from "world-atlas/countries-110m.json";
 import type { FeatureCollection, Geometry } from "geojson";
 import { Localized } from "./localized";
 
-const siteId = "0b8c6518-924c-4dbd-994f-afaec8192b5a";
-const trackerOrigin = "https://visitor-tracker-129.emergent.host";
+const API_ORIGIN = "https://rayan-gao-space.gaoruohan2006.chatgpt.site";
 const projection = geoNaturalEarth1().fitExtent(
   [[22, 20], [778, 400]],
   { type: "Sphere" },
@@ -22,6 +21,8 @@ const countries = feature(
 type VisitorPoint = {
   lat: number;
   lng: number;
+  city?: string | null;
+  country?: string | null;
 };
 
 type VisitorResponse = {
@@ -38,9 +39,10 @@ export function VisitorMap() {
     let active = true;
     async function loadPoints() {
       try {
-        const response = await fetch(
-          `${trackerOrigin}/api/visitor-map/${siteId}?hours=24&limit=400`,
-        );
+        const apiOrigin = window.location.hostname.endsWith("github.io")
+          ? API_ORIGIN
+          : "";
+        const response = await fetch(`${apiOrigin}/api/visitors?hours=24&limit=400`);
         if (!response.ok) throw new Error("Visitor map unavailable");
         const data = (await response.json()) as VisitorResponse;
         if (!active) return;
@@ -113,17 +115,10 @@ export function VisitorMap() {
         </div>
         <p>
           <Localized
-            zh="红点表示访客所在城市的近似位置，不记录精确地址。"
-            en="Red markers show approximate city locations; precise addresses are not collected."
+            zh="红点表示匿名访客所在城市的近似位置，不保存 IP 或精确地址。"
+            en="Red markers show approximate cities for anonymous visitors; IPs and precise addresses are not stored."
           />
         </p>
-        <a
-          href="https://feed-pulse.com"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Localized zh="访客数据由 FeedPulse 提供 ↗" en="Visitor data by FeedPulse ↗" />
-        </a>
       </div>
     </div>
   );
