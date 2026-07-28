@@ -280,6 +280,12 @@ function CvPage() {
 
 const updateEntries = [
   {
+    zhTitle: "修正访客统计数据链路",
+    enTitle: "Corrected visitor analytics",
+    zhBody: "修正全站访客数据记录，使地图红点与计数能够随实际访问更新。",
+    enBody: "Corrected site-wide visit recording so map markers and counts update with real traffic.",
+  },
+  {
     zhTitle: "新增维护日志与访客地图",
     enTitle: "Added the update log and visitor map",
     zhBody: "上线网站更新记录，加入真实访客的城市级红点地图，并进一步精简项目与简历页面。",

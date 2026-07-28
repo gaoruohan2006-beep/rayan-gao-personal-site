@@ -119,6 +119,7 @@ test("publishes the update history and live visitor map", async () => {
   const html = await (await render("/updates")).text();
 
   assert.match(html, /新增维护日志与访客地图/);
+  assert.match(html, /修正访客统计数据链路/);
   assert.match(html, /网站框架建立/);
   assert.match(html, /2026\.07\.28/);
   assert.match(html, /最近 24 小时访客/);

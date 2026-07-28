@@ -15,8 +15,8 @@ export function VisitorTracker() {
     const tracker = document.createElement("script");
     tracker.async = true;
     tracker.src =
-      `${trackerOrigin}/api/embed/visitor-globe.js?site_id=${siteId}` +
-      "&map=flat&w=1&h=1&theme=ivory&speed=off";
+      `${trackerOrigin}/api/embed/traffic-feed.js?site_id=${siteId}` +
+      "&rows=1&nobot=1";
     host.appendChild(tracker);
 
     return () => {
