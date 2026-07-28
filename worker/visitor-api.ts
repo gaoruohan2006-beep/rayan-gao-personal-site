@@ -14,6 +14,10 @@ type RequestWithCloudflareLocation = Request & {
 type VisitorPayload = {
   visitorId?: unknown;
   path?: unknown;
+  latitude?: unknown;
+  longitude?: unknown;
+  city?: unknown;
+  country?: unknown;
 };
 
 const ALLOWED_ORIGINS = new Set([
@@ -78,8 +82,8 @@ async function recordVisitor(request: RequestWithCloudflareLocation, env: Visito
     );
   }
 
-  const latitude = Number(request.cf?.latitude);
-  const longitude = Number(request.cf?.longitude);
+  const latitude = Number(payload.latitude ?? request.cf?.latitude);
+  const longitude = Number(payload.longitude ?? request.cf?.longitude);
   if (
     !Number.isFinite(latitude) ||
     !Number.isFinite(longitude) ||
@@ -99,8 +103,12 @@ async function recordVisitor(request: RequestWithCloudflareLocation, env: Visito
   const visitDay = new Date(now).toISOString().slice(0, 10);
   const id = crypto.randomUUID();
   const path = normalizePath(payload.path);
-  const city = request.cf?.city?.trim().slice(0, 100) || null;
-  const country = request.cf?.country?.trim().slice(0, 2).toUpperCase() || null;
+  const cityValue =
+    typeof payload.city === "string" ? payload.city : request.cf?.city;
+  const countryValue =
+    typeof payload.country === "string" ? payload.country : request.cf?.country;
+  const city = cityValue?.trim().slice(0, 100) || null;
+  const country = countryValue?.trim().slice(0, 2).toUpperCase() || null;
 
   const result = await env.DB.prepare(
     `INSERT OR IGNORE INTO visitor_events
