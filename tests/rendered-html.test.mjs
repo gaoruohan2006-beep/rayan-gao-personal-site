@@ -38,6 +38,8 @@ test("renders a unified bilingual interface with Chinese as the default", async 
   assert.match(html, />EN<\/button>/);
   assert.match(html, /关于我/);
   assert.match(html, /About Me/);
+  assert.match(html, /我永远会向堕落的自己开枪，我因瑕疵而鲜活/);
+  assert.doesNotMatch(html, /class="copy-button"/);
 });
 
 test("renders every academic section with both complete language variants", async () => {
@@ -66,11 +68,12 @@ test("keeps the public profile truthful", async () => {
   assert.match(html, /Rayan Gao/);
   assert.match(html, /武汉科技大学/);
   assert.match(html, /Wuhan University of Science and Technology/);
-  assert.match(html, /gaoruohan@wust\.edu\.cn/);
+  assert.doesNotMatch(html, /gaoruohan@wust\.edu\.cn/);
   assert.doesNotMatch(html, /18186067758/);
   assert.doesNotMatch(html, /ifhighcold0620/);
   assert.match(html, /复制手机号/);
   assert.match(html, /复制小红书号/);
+  assert.match(html, /复制邮箱/);
   assert.match(html, /gaoruohan2006-beep/);
   assert.match(html, /统计学/);
   assert.match(html, /碳排放时滞性/);
@@ -84,7 +87,9 @@ test("publishes the resume and competition papers with preview and download link
   assert.match(portfolioHtml, /2025-cumcm-nipt\.pdf#view=FitH/);
   assert.match(portfolioHtml, /2026-mathorcup-hyperlipidemia\.pdf#view=FitH/);
   assert.match(portfolioHtml, /队长，负责建模与代码实现/);
+  assert.match(portfolioHtml, /已加水印/);
   assert.match(cvHtml, /rayan-gao-cv\.pdf#view=FitH/);
+  assert.match(cvHtml, /已加水印/);
   assert.match(cvHtml, /download/);
 
   const assets = [

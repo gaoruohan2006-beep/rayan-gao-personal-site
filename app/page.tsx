@@ -79,8 +79,8 @@ export default function Home() {
         </p>
         <p>
           <Localized
-            zh="我的研究方向是碳排放时滞性，同时关注数学建模与数学竞赛。我习惯从数据、模型与代码三个层面分析问题，并在团队项目中承担建模和程序实现工作。"
-            en="My research focuses on temporal lag effects in carbon emissions. I am also interested in mathematical modeling and competitions, approaching problems through data, models, and code while taking responsibility for modeling and implementation in team projects."
+            zh="我的座右铭：我永远会向堕落的自己开枪，我因瑕疵而鲜活。"
+            en="My motto: I will always take aim at the version of myself that falls; my flaws are what make me alive."
           />
         </p>
       </section>

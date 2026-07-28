@@ -136,7 +136,7 @@ function PortfolioPage() {
         <div className="document-stack">
           <DocumentCard
             file="/docs/2025-cumcm-nipt.pdf"
-            meta={{ zh: "2025 · 省级一等奖 · 60 页", en: "2025 · Provincial First Prize · 60 pages" }}
+            meta={{ zh: "2025 · 省级一等奖 · 60 页 · 已加水印", en: "2025 · Provincial First Prize · 60 pages · Watermarked" }}
             title={{
               zh: "基于 Logistic 与混合优化模型的 NIPT 研究",
               en: "NIPT Study Based on Logistic and Hybrid Optimization Models",
@@ -149,7 +149,7 @@ function PortfolioPage() {
           />
           <DocumentCard
             file="/docs/2026-mathorcup-hyperlipidemia.pdf"
-            meta={{ zh: "2026 · 一等奖 · 54 页", en: "2026 · First Prize · 54 pages" }}
+            meta={{ zh: "2026 · 一等奖 · 54 页 · 已加水印", en: "2026 · First Prize · 54 pages · Watermarked" }}
             title={{
               zh: "基于多维数据特征融合和多目标动态规划的高血脂预警与干预机制",
               en: "Hyperlipidemia Warning and Intervention Using Multidimensional Data Fusion and Multi-objective Dynamic Planning",
@@ -296,7 +296,16 @@ function CvPage() {
           <h2><Localized zh="联系方式" en="Contact" /></h2>
         </div>
         <dl className="cv-facts contact-facts">
-          <div><dt><Localized zh="邮箱" en="Email" /></dt><dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd></div>
+          <div>
+            <dt><Localized zh="邮箱" en="Email" /></dt>
+            <dd>
+              <CopyContact
+                encodedValue={profile.emailEncoded}
+                labelZh="点击复制邮箱"
+                labelEn="Click to copy email"
+              />
+            </dd>
+          </div>
           <div>
             <dt><Localized zh="手机" en="Phone" /></dt>
             <dd>
@@ -327,7 +336,7 @@ function CvPage() {
         </div>
         <DocumentCard
           file="/docs/rayan-gao-cv.pdf"
-          meta={{ zh: "个人简历 · 1 页", en: "Resume · 1 page" }}
+          meta={{ zh: "个人简历 · 1 页 · 已加水印", en: "Resume · 1 page · Watermarked" }}
           title={{ zh: "高若寒个人简历", en: "Rayan Gao Resume" }}
           description={{
             zh: "可直接在线预览，也可以下载保存。",

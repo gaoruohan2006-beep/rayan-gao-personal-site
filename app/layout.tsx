@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { headers } from "next/headers";
-import { CopyEmail } from "./copy-email";
 import { CopyContact } from "./copy-contact";
 import { LanguageToggle } from "./language-toggle";
 import { Localized } from "./localized";
@@ -105,9 +104,11 @@ export default function RootLayout({
               <div>
                 <dt aria-hidden="true">@</dt>
                 <dd>
-                  <a href={`mailto:${profile.email}`}>
-                    <Localized zh="邮箱" en="Email" />
-                  </a>
+                  <CopyContact
+                    encodedValue={profile.emailEncoded}
+                    labelZh="复制邮箱"
+                    labelEn="Copy email"
+                  />
                 </dd>
               </div>
               <div>
@@ -135,8 +136,6 @@ export default function RootLayout({
                 <dd><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a></dd>
               </div>
             </dl>
-
-            <CopyEmail email={profile.email} />
           </aside>
 
           <main className="academic-main">{children}</main>
@@ -154,7 +153,11 @@ export default function RootLayout({
           </div>
           <div className="footer-links">
             <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-            <a href={`mailto:${profile.email}`}><Localized zh="邮箱" en="Email" /></a>
+            <CopyContact
+              encodedValue={profile.emailEncoded}
+              labelZh="复制邮箱"
+              labelEn="Copy email"
+            />
             <a href="#top"><Localized zh="返回顶部 ↑" en="Top ↑" /></a>
           </div>
           <small>

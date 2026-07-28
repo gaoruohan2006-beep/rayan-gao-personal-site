@@ -5,7 +5,7 @@ export const profile = {
   school: "Wuhan University of Science and Technology",
   schoolZh: "武汉科技大学",
   location: "Wuhan, China",
-  email: "gaoruohan@wust.edu.cn",
+  emailEncoded: "Z2FvcnVvaGFuQHd1c3QuZWR1LmNu",
   phoneEncoded: "MTgxODYwNjc3NTg=",
   xiaohongshuEncoded: "aWZoaWdoY29sZDA2MjA=",
   github: "https://github.com/gaoruohan2006-beep",

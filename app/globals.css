@@ -295,42 +295,6 @@ button {
   font-style: normal;
 }
 
-.copy-button {
-  width: 100%;
-  min-height: 42px;
-  margin-top: 18px;
-  padding: 0 7px 0 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  background: var(--surface);
-  border: 1px solid var(--line-dark);
-  border-radius: 4px;
-  color: var(--ink);
-  cursor: pointer;
-  font-size: 0.72rem;
-  font-weight: 700;
-  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
-}
-
-.copy-button:hover {
-  border-color: var(--blue);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(35, 62, 75, 0.07);
-}
-
-.copy-button i {
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  background: var(--blue);
-  border-radius: 3px;
-  color: white;
-  font-style: normal;
-}
-
 .academic-main {
   min-width: 0;
   padding: 62px 0 110px;
@@ -1035,6 +999,11 @@ html[data-language="zh"] .empty-record h3 {
   font-size: 0.75rem;
 }
 
+.footer-links .contact-copy {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
 .page-footer small {
   grid-column: 1 / -1;
   padding-top: 14px;
@@ -1123,13 +1092,6 @@ html[data-language="zh"] .empty-record h3 {
     border: 0;
   }
 
-  .copy-button {
-    width: 150px;
-    grid-column: 3;
-    grid-row: 1;
-    margin: 0;
-  }
-
   .academic-main {
     padding-top: 44px;
   }
@@ -1179,13 +1141,6 @@ html[data-language="zh"] .empty-record h3 {
   .author-details {
     grid-column: 1 / -1;
     margin-top: 22px;
-  }
-
-  .copy-button {
-    width: 100%;
-    grid-column: 1 / -1;
-    grid-row: auto;
-    margin-top: 16px;
   }
 
   .page-header h1 {
