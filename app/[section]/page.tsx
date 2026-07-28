@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
+import { DocumentCard } from "../document-card";
 import { Localized } from "../localized";
+import { profile } from "../site-data";
 
 type LocalizedValue = { zh: string; en: string };
 
@@ -20,8 +22,8 @@ const sections: Record<string, SectionContent> = {
       en: "Journal articles, conference papers, preprints, and other scholarly work.",
     },
     description: {
-      zh: "目前没有已确认的论文记录。之后可以按年份、论文类型或研究主题组织，并为每条成果加入摘要、合作者、DOI、PDF 与引用信息。",
-      en: "No publication records have been confirmed yet. Future entries can be organized by year, publication type, or research topic, with abstracts, co-authors, DOI, PDF, and citation details.",
+      zh: "目前没有已确认的正式发表论文。竞赛论文已收录在项目作品页面，不会与学术出版物混淆。",
+      en: "No formal publications have been confirmed. Competition papers are listed under Portfolio and are not presented as academic publications.",
     },
     requirements: [
       { zh: "论文题目与作者顺序", en: "Title and author order" },
@@ -38,13 +40,13 @@ const sections: Record<string, SectionContent> = {
       en: "Conference talks, seminars, presentations, and posters.",
     },
     description: {
-      zh: "目前没有已确认的报告记录。课程汇报、竞赛答辩、学术海报和公开分享都可以在这里按时间整理。",
-      en: "No talk records have been confirmed yet. Course presentations, competition defenses, academic posters, and public talks can be organized here chronologically.",
+      zh: "目前没有已确认的公开报告记录。课程汇报、竞赛答辩、学术海报和公开分享可以在后续加入。",
+      en: "No public talk records have been confirmed. Course presentations, competition defenses, posters, and public talks can be added later.",
     },
     requirements: [
       { zh: "活动与报告名称", en: "Event and presentation name" },
       { zh: "日期和举办地点", en: "Date and location" },
-      { zh: "你的报告题目", en: "Your presentation title" },
+      { zh: "报告题目与个人角色", en: "Presentation title and role" },
       { zh: "幻灯片、海报或视频链接", en: "Slides, poster, or video link" },
     ],
   },
@@ -56,32 +58,14 @@ const sections: Record<string, SectionContent> = {
       en: "Teaching, mentoring, tutoring, and educational contributions.",
     },
     description: {
-      zh: "目前没有已确认的教学经历。助教、课程辅导、社团培训或学习资料建设都可以作为真实条目加入。",
-      en: "No teaching experience has been confirmed yet. Teaching assistance, tutoring, student training, or educational resource development can be added as verified entries.",
+      zh: "目前没有已确认的教学经历。助教、课程辅导、社团培训或学习资料建设可以在后续加入。",
+      en: "No teaching experience has been confirmed. Teaching assistance, tutoring, student training, or educational resources can be added later.",
     },
     requirements: [
       { zh: "课程或活动名称", en: "Course or activity name" },
       { zh: "承担的角色", en: "Your role" },
       { zh: "时间与服务对象", en: "Dates and audience" },
       { zh: "讲义或资料链接", en: "Teaching material link" },
-    ],
-  },
-  portfolio: {
-    kicker: { zh: "代表作品", en: "Selected Work" },
-    title: { zh: "项目作品", en: "Portfolio" },
-    lead: {
-      zh: "研究项目、课程作业、软件、竞赛与创意作品。",
-      en: "Research projects, coursework, software, competitions, and creative work.",
-    },
-    description: {
-      zh: "这里将展示最能代表你的项目。每个案例会说明问题背景、你的贡献、方法、结果以及可以核验的链接或截图。",
-      en: "This section will showcase your strongest projects. Each case study will explain the context, your contribution, methods, results, and verifiable links or images.",
-    },
-    requirements: [
-      { zh: "项目名称与时间", en: "Project name and date" },
-      { zh: "问题背景和团队规模", en: "Context and team size" },
-      { zh: "你负责的具体工作", en: "Your specific contribution" },
-      { zh: "成果、代码、图片或演示", en: "Results, code, images, or demo" },
     ],
   },
   blog: {
@@ -102,100 +86,260 @@ const sections: Record<string, SectionContent> = {
       { zh: "相关资料与引用来源", en: "References and source material" },
     ],
   },
-  cv: {
-    kicker: { zh: "个人履历", en: "Curriculum Vitae" },
-    title: { zh: "个人简历", en: "Curriculum Vitae" },
-    lead: {
-      zh: "教育、经历、技能与成果的简洁记录。",
-      en: "A concise record of education, experience, skills, and achievements.",
-    },
-    description: {
-      zh: "当前履历只包含已确认的学校与联系方式。提供专业、时间、经历和奖项后，可以生成完整网页履历与可下载 PDF。",
-      en: "The current CV contains only the confirmed institution and contact information. A complete web CV and downloadable PDF can be created after the major, dates, experience, and awards are provided.",
-    },
-    requirements: [
-      { zh: "专业、学位与在读时间", en: "Major, degree, and dates" },
-      { zh: "项目、实习或社团经历", en: "Projects, internships, or activities" },
-      { zh: "技能、语言与证书", en: "Skills, languages, and certificates" },
-      { zh: "奖项、竞赛与社会服务", en: "Awards, competitions, and service" },
-    ],
-  },
 };
 
-export function generateStaticParams() {
-  return Object.keys(sections).map((section) => ({ section }));
+function PageHeader({
+  kicker,
+  title,
+  lead,
+}: {
+  kicker: LocalizedValue;
+  title: LocalizedValue;
+  lead: LocalizedValue;
+}) {
+  return (
+    <header className="page-header">
+      <p className="page-kicker"><Localized zh={kicker.zh} en={kicker.en} /></p>
+      <h1><Localized zh={title.zh} en={title.en} /></h1>
+      <p className="page-lead"><Localized zh={lead.zh} en={lead.en} /></p>
+    </header>
+  );
 }
 
-export default async function AcademicSection({
-  params,
-}: {
-  params: Promise<{ section: string }>;
-}) {
-  const { section } = await params;
-  const content = sections[section];
-  if (!content) notFound();
-
-  const isCv = section === "cv";
-
+function PortfolioPage() {
   return (
     <article className="content-page">
-      <header className="page-header">
-        <p className="page-kicker">
-          <Localized zh={content.kicker.zh} en={content.kicker.en} />
-        </p>
-        <h1><Localized zh={content.title.zh} en={content.title.en} /></h1>
-        <p className="page-lead">
-          <Localized zh={content.lead.zh} en={content.lead.en} />
-        </p>
-      </header>
+      <PageHeader
+        kicker={{ zh: "代表作品", en: "Selected Work" }}
+        title={{ zh: "项目作品", en: "Portfolio" }}
+        lead={{
+          zh: "以数学建模竞赛为起点，持续整理研究、课程与代码作品。",
+          en: "A growing collection of competition, research, coursework, and software projects.",
+        }}
+      />
 
-      {isCv && (
-        <section className="content-section cv-section">
-          <div className="section-heading">
-            <span>01</span>
-            <h2><Localized zh="教育经历" en="Education" /></h2>
-          </div>
-          <div className="cv-entry">
-            <div>
-              <h3>
-                <Localized
-                  zh="武汉科技大学"
-                  en="Wuhan University of Science and Technology"
-                />
-              </h3>
-              <p><Localized zh="在读学生" en="Student" /></p>
-            </div>
-            <time><Localized zh="时间待补充" en="Dates pending" /></time>
-          </div>
-        </section>
-      )}
+      <section className="prose-section">
+        <p>
+          <Localized
+            zh="以下作品均为团队竞赛成果。我担任队长，主要负责模型构建、求解思路设计与代码实现。"
+            en="The projects below are team competition entries. I served as team lead and was primarily responsible for model development, solution design, and code implementation."
+          />
+        </p>
+      </section>
 
       <section className="content-section">
         <div className="section-heading">
-          <span>{isCv ? "02" : "01"}</span>
-          <h2>
-            <Localized
-              zh={isCv ? "其他经历" : "当前记录"}
-              en={isCv ? "Additional Sections" : "Current Record"}
-            />
-          </h2>
+          <span>01</span>
+          <h2><Localized zh="竞赛项目作品" en="Competition Projects" /></h2>
         </div>
-        <div className="empty-record">
-          <div className="empty-record-icon" aria-hidden="true">◇</div>
-          <h3><Localized zh="暂无已确认条目" en="No verified entries yet" /></h3>
-          <p>
-            <Localized
-              zh={content.description.zh}
-              en={content.description.en}
-            />
-          </p>
+        <div className="document-stack">
+          <DocumentCard
+            file="/docs/2025-cumcm-nipt.pdf"
+            meta={{ zh: "2025 · 省级一等奖 · 60 页", en: "2025 · Provincial First Prize · 60 pages" }}
+            title={{
+              zh: "基于 Logistic 与混合优化模型的 NIPT 研究",
+              en: "NIPT Study Based on Logistic and Hybrid Optimization Models",
+            }}
+            description={{
+              zh: "2025 高教社杯全国大学生数学建模竞赛省级一等奖作品。队长，负责建模与代码实现。",
+              en: "Provincial First Prize entry in the 2025 CUMCM. Team lead, responsible for modeling and code implementation.",
+            }}
+            previewTitle="2025 CUMCM NIPT competition paper preview"
+          />
+          <DocumentCard
+            file="/docs/2026-mathorcup-hyperlipidemia.pdf"
+            meta={{ zh: "2026 · 一等奖 · 54 页", en: "2026 · First Prize · 54 pages" }}
+            title={{
+              zh: "基于多维数据特征融合和多目标动态规划的高血脂预警与干预机制",
+              en: "Hyperlipidemia Warning and Intervention Using Multidimensional Data Fusion and Multi-objective Dynamic Planning",
+            }}
+            description={{
+              zh: "2026 MathorCup 数学应用挑战赛一等奖作品。队长，负责建模与代码实现。",
+              en: "First Prize entry in the 2026 MathorCup Mathematical Modeling Challenge. Team lead, responsible for modeling and code implementation.",
+            }}
+            previewTitle="2026 MathorCup competition paper preview"
+          />
         </div>
       </section>
 
       <section className="content-section">
         <div className="section-heading">
-          <span>{isCv ? "03" : "02"}</span>
-          <h2><Localized zh="需要提供的信息" en="Information Needed" /></h2>
+          <span>02</span>
+          <h2><Localized zh="其他项目分类" en="Additional Project Areas" /></h2>
+        </div>
+        <div className="portfolio-category-grid">
+          <article>
+            <span>R</span>
+            <h3><Localized zh="研究项目" en="Research Projects" /></h3>
+            <p>
+              <Localized
+                zh="后续收录碳排放时滞性研究与相关统计分析。"
+                en="Future work on carbon-emission time lags and related statistical analysis."
+              />
+            </p>
+          </article>
+          <article>
+            <span>C</span>
+            <h3><Localized zh="课程项目" en="Course Projects" /></h3>
+            <p>
+              <Localized
+                zh="后续收录代表性课程论文、报告与数据分析作业。"
+                en="Future selected coursework, reports, and data-analysis assignments."
+              />
+            </p>
+          </article>
+          <article>
+            <span>D</span>
+            <h3><Localized zh="代码与工具" en="Code & Tools" /></h3>
+            <p>
+              <Localized
+                zh="后续收录可公开的模型代码、数据工具与可视化作品。"
+                en="Future public modeling code, data tools, and visualization work."
+              />
+            </p>
+          </article>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function CvPage() {
+  return (
+    <article className="content-page">
+      <PageHeader
+        kicker={{ zh: "个人履历", en: "Curriculum Vitae" }}
+        title={{ zh: "个人简历", en: "Curriculum Vitae" }}
+        lead={{
+          zh: "教育、研究方向、课程、竞赛与联系方式。",
+          en: "Education, research, coursework, competitions, and contact details.",
+        }}
+      />
+
+      <section className="content-section cv-section">
+        <div className="section-heading">
+          <span>01</span>
+          <h2><Localized zh="教育经历" en="Education" /></h2>
+        </div>
+        <div className="cv-entry">
+          <div>
+            <h3>
+              <Localized
+                zh="武汉科技大学 · 统计学"
+                en="Wuhan University of Science and Technology · Statistics"
+              />
+            </h3>
+            <p><Localized zh="本科生" en="Undergraduate" /></p>
+          </div>
+          <time>2024—2028</time>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="section-heading">
+          <span>02</span>
+          <h2><Localized zh="研究与课程" en="Research & Coursework" /></h2>
+        </div>
+        <dl className="cv-facts">
+          <div>
+            <dt><Localized zh="研究方向" en="Research focus" /></dt>
+            <dd><Localized zh="碳排放时滞性" en="Temporal lag effects in carbon emissions" /></dd>
+          </div>
+          <div>
+            <dt><Localized zh="兴趣方向" en="Interests" /></dt>
+            <dd><Localized zh="数学建模、数学竞赛" en="Mathematical modeling and competitions" /></dd>
+          </div>
+          <div>
+            <dt><Localized zh="代表课程" en="Selected coursework" /></dt>
+            <dd><Localized zh="数学分析、高等代数" en="Mathematical Analysis and Advanced Algebra" /></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section className="content-section">
+        <div className="section-heading">
+          <span>03</span>
+          <h2><Localized zh="竞赛经历" en="Competitions" /></h2>
+        </div>
+        <ol className="achievement-list">
+          <li>
+            <time>2026</time>
+            <div>
+              <strong>
+                <Localized
+                  zh="MathorCup 数学应用挑战赛一等奖"
+                  en="First Prize, MathorCup Mathematical Modeling Challenge"
+                />
+              </strong>
+              <p><Localized zh="队长 · 负责建模与代码实现" en="Team Lead · Modeling and code implementation" /></p>
+            </div>
+          </li>
+          <li>
+            <time>2025</time>
+            <div>
+              <strong>
+                <Localized
+                  zh="高教社杯全国大学生数学建模竞赛省级一等奖"
+                  en="Provincial First Prize, CUMCM"
+                />
+              </strong>
+              <p><Localized zh="队长 · 负责建模与代码实现" en="Team Lead · Modeling and code implementation" /></p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section className="content-section">
+        <div className="section-heading">
+          <span>04</span>
+          <h2><Localized zh="联系方式" en="Contact" /></h2>
+        </div>
+        <dl className="cv-facts contact-facts">
+          <div><dt><Localized zh="邮箱" en="Email" /></dt><dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd></div>
+          <div><dt><Localized zh="手机" en="Phone" /></dt><dd><a href={`tel:${profile.phone}`}>{profile.phone}</a></dd></div>
+          <div><dt><Localized zh="小红书" en="Xiaohongshu" /></dt><dd>{profile.xiaohongshu}</dd></div>
+        </dl>
+      </section>
+
+      <section className="content-section">
+        <div className="section-heading">
+          <span>05</span>
+          <h2><Localized zh="PDF 简历" en="PDF Resume" /></h2>
+        </div>
+        <DocumentCard
+          file="/docs/rayan-gao-cv.pdf"
+          meta={{ zh: "个人简历 · 1 页", en: "Resume · 1 page" }}
+          title={{ zh: "高若寒个人简历", en: "Rayan Gao Resume" }}
+          description={{
+            zh: "可直接在线预览，也可以下载保存。",
+            en: "Preview the resume online or download a copy.",
+          }}
+          previewTitle="Rayan Gao resume preview"
+        />
+      </section>
+    </article>
+  );
+}
+
+function GenericSection({ content }: { content: SectionContent }) {
+  return (
+    <article className="content-page">
+      <PageHeader kicker={content.kicker} title={content.title} lead={content.lead} />
+      <section className="content-section">
+        <div className="section-heading">
+          <span>01</span>
+          <h2><Localized zh="当前记录" en="Current Record" /></h2>
+        </div>
+        <div className="empty-record">
+          <div className="empty-record-icon" aria-hidden="true">◇</div>
+          <h3><Localized zh="暂无已确认条目" en="No verified entries yet" /></h3>
+          <p><Localized zh={content.description.zh} en={content.description.en} /></p>
+        </div>
+      </section>
+      <section className="content-section">
+        <div className="section-heading">
+          <span>02</span>
+          <h2><Localized zh="后续可补充" en="Information to Add" /></h2>
         </div>
         <ul className="requirements-list">
           {content.requirements.map((item) => (
@@ -208,4 +352,21 @@ export default async function AcademicSection({
       </section>
     </article>
   );
+}
+
+export function generateStaticParams() {
+  return [...Object.keys(sections), "portfolio", "cv"].map((section) => ({ section }));
+}
+
+export default async function AcademicSection({
+  params,
+}: {
+  params: Promise<{ section: string }>;
+}) {
+  const { section } = await params;
+  if (section === "portfolio") return <PortfolioPage />;
+  if (section === "cv") return <CvPage />;
+  const content = sections[section];
+  if (!content) notFound();
+  return <GenericSection content={content} />;
 }

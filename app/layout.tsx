@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { CopyEmail } from "./copy-email";
@@ -21,10 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | Rayan Gao",
     },
     description:
-      "Rayan Gao 的学术个人主页。武汉科技大学在读，记录研究、项目、教学、文章与个人履历。",
+      "Rayan Gao 的学术个人主页。武汉科技大学统计学本科生，研究碳排放时滞性，关注数学建模与数学竞赛。",
     openGraph: {
       title: "Rayan Gao — Academic Portfolio",
-      description: "Student at Wuhan University of Science and Technology.",
+      description: "Statistics undergraduate researching temporal lag effects in carbon emissions.",
       type: "website",
       url: base,
       images: [{ url: ogImage, width: 1734, height: 907, alt: "Rayan Gao academic portfolio" }],
@@ -32,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "Rayan Gao — Academic Portfolio",
-      description: "Student at Wuhan University of Science and Technology.",
+      description: "Statistics undergraduate researching temporal lag effects in carbon emissions.",
       images: [ogImage],
     },
   };
@@ -69,16 +70,24 @@ export default function RootLayout({
 
         <div className="academic-shell">
           <aside className="author-profile">
-            <div className="avatar" aria-label="Rayan Gao initials">RG</div>
+            <Image
+              className="avatar"
+              src={withBasePath("/avatar-rayan.jpg")}
+              width={174}
+              height={174}
+              alt="Rayan Gao profile avatar"
+              priority
+              unoptimized
+            />
             <div className="author-content">
               <h2>{profile.name}</h2>
               <p className="author-role">
-                <Localized zh="学生" en={profile.role} />
+                <Localized zh="统计学本科生" en={profile.role} />
               </p>
               <p className="author-bio">
                 <Localized
-                  zh="用真实的项目与经历，逐步建立个人学术档案。"
-                  en="Building a truthful academic record, one project at a time."
+                  zh="研究碳排放时滞性，关注数学建模与数学竞赛。"
+                  en="Studying temporal lag effects in carbon emissions, with interests in mathematical modeling and competitions."
                 />
               </p>
             </div>
@@ -98,6 +107,20 @@ export default function RootLayout({
                   <a href={`mailto:${profile.email}`}>
                     <Localized zh="邮箱" en="Email" />
                   </a>
+                </dd>
+              </div>
+              <div>
+                <dt aria-hidden="true">☎</dt>
+                <dd>
+                  <a href={`tel:${profile.phone}`}>
+                    <Localized zh="手机" en="Phone" /> · {profile.phone}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt aria-hidden="true">小</dt>
+                <dd>
+                  <Localized zh="小红书" en="Xiaohongshu" /> · {profile.xiaohongshu}
                 </dd>
               </div>
               <div>

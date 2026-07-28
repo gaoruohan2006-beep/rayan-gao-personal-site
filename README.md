@@ -16,6 +16,9 @@ workflow. The site intentionally uses only verified profile details.
 - Responsive academic homepage with a persistent author profile
 - Unified Chinese and English modes with a remembered `中 / EN` switch
 - Separate Publications, Talks, Teaching, Portfolio, Blog, and CV routes
+- Circular profile artwork and verified public contact details
+- Embedded previews and downloads for the resume and two competition papers
+- Structured Statistics education, research interests, coursework, and awards
 - Honest academic empty states instead of fictional records
 - One-click email copy with a mail-client fallback
 - Reduced-motion support and keyboard-friendly navigation
@@ -56,10 +59,10 @@ and the social-preview configuration live in `app/layout.tsx`.
 
 Useful next additions:
 
-1. Add Rayan's major and research interests.
-2. Replace the three content placeholders with real project case studies.
-3. Add a résumé download when a final PDF is available.
-4. Add verified links to future papers, projects, and talks as they become available.
+1. Add a fuller description of the carbon-emission time-lag research.
+2. Add public code repositories for the competition models when available.
+3. Add verified course, research, and software projects as they become available.
+4. Add future talks, publications, and writing without mixing competition work with formal publications.
 
 ## License
 

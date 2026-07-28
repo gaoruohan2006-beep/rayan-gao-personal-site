@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { stat } from "node:fs/promises";
 import test from "node:test";
 
 async function render(pathname = "/") {
@@ -65,6 +66,33 @@ test("keeps the public profile truthful", async () => {
   assert.match(html, /武汉科技大学/);
   assert.match(html, /Wuhan University of Science and Technology/);
   assert.match(html, /gaoruohan@wust\.edu\.cn/);
+  assert.match(html, /18186067758/);
+  assert.match(html, /ifhighcold0620/);
   assert.match(html, /gaoruohan2006-beep/);
+  assert.match(html, /统计学/);
+  assert.match(html, /碳排放时滞性/);
   assert.doesNotMatch(html, /Lorem ipsum|John Doe|Example University/i);
+});
+
+test("publishes the resume and competition papers with preview and download links", async () => {
+  const portfolioHtml = await (await render("/portfolio")).text();
+  const cvHtml = await (await render("/cv")).text();
+
+  assert.match(portfolioHtml, /2025-cumcm-nipt\.pdf#view=FitH/);
+  assert.match(portfolioHtml, /2026-mathorcup-hyperlipidemia\.pdf#view=FitH/);
+  assert.match(portfolioHtml, /队长，负责建模与代码实现/);
+  assert.match(cvHtml, /rayan-gao-cv\.pdf#view=FitH/);
+  assert.match(cvHtml, /download/);
+
+  const assets = [
+    "../public/avatar-rayan.jpg",
+    "../public/docs/rayan-gao-cv.pdf",
+    "../public/docs/2025-cumcm-nipt.pdf",
+    "../public/docs/2026-mathorcup-hyperlipidemia.pdf",
+  ];
+
+  for (const asset of assets) {
+    const info = await stat(new URL(asset, import.meta.url));
+    assert.ok(info.size > 100_000, asset);
+  }
 });

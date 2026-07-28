@@ -1,10 +1,12 @@
 export const profile = {
   name: "Rayan Gao",
-  role: "Student",
+  role: "Undergraduate in Statistics",
   school: "Wuhan University of Science and Technology",
   schoolZh: "武汉科技大学",
   location: "Wuhan, China",
   email: "gaoruohan@wust.edu.cn",
+  phone: "18186067758",
+  xiaohongshu: "ifhighcold0620",
   github: "https://github.com/gaoruohan2006-beep",
 } as const;
 
