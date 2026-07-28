@@ -9,6 +9,15 @@ const [owner = "gaoruohan2006-beep", repository = "rayan-gao-personal-site"] =
   (process.env.GITHUB_REPOSITORY ?? "gaoruohan2006-beep/rayan-gao-personal-site").split("/");
 const basePath = process.env.GITHUB_ACTIONS ? `/${repository}` : "";
 const publicUrl = `https://${owner}.github.io/${repository}`;
+const routes = [
+  "",
+  "publications",
+  "talks",
+  "teaching",
+  "portfolio",
+  "blog",
+  "cv",
+];
 
 const server = spawn(
   process.execPath,
@@ -34,10 +43,10 @@ server.stderr.on("data", (chunk) => {
   serverLog += chunk.toString();
 });
 
-async function waitForPage() {
+async function waitForPage(path = "") {
   for (let attempt = 0; attempt < 40; attempt += 1) {
     try {
-      const response = await fetch(localUrl);
+      const response = await fetch(`${localUrl}/${path}`);
       if (response.ok) return response.text();
     } catch {
       // The production server is still starting.
@@ -49,18 +58,25 @@ async function waitForPage() {
 }
 
 try {
-  let html = await waitForPage();
-
-  html = html
-    .replaceAll(`${localUrl}/og.png`, `${publicUrl}/og.png`)
-    .replaceAll("http://localhost:3000/og.png", `${publicUrl}/og.png`)
-    .replaceAll("/assets/", `${basePath}/assets/`);
-
   await rm("_site", { recursive: true, force: true });
   await mkdir("_site", { recursive: true });
   await cp("dist/client", "_site", { recursive: true });
-  await writeFile("_site/index.html", html, "utf8");
-  await writeFile("_site/404.html", html, "utf8");
+
+  let homeHtml = "";
+  for (const route of routes) {
+    let html = await waitForPage(route);
+    html = html
+      .replaceAll(`${localUrl}/og-academic.png`, `${publicUrl}/og-academic.png`)
+      .replaceAll("http://localhost:3000/og-academic.png", `${publicUrl}/og-academic.png`)
+      .replaceAll("/assets/", `${basePath}/assets/`);
+
+    const destination = route ? `_site/${route}` : "_site";
+    await mkdir(destination, { recursive: true });
+    await writeFile(`${destination}/index.html`, html, "utf8");
+    if (!route) homeHtml = html;
+  }
+
+  await writeFile("_site/404.html", homeHtml, "utf8");
   await writeFile("_site/.nojekyll", "", "utf8");
 
   console.log(`Prepared GitHub Pages artifact for ${publicUrl}`);

@@ -1,9 +1,10 @@
 # Rayan Gao — Personal Space
 
-A light, editorial personal website for Rayan Gao, a student at Wuhan University
-of Science and Technology. The first release intentionally uses only verified
-profile details and leaves clear content slots for future projects, notes, and a
-résumé.
+A light academic personal website for Rayan Gao, a student at Wuhan University
+of Science and Technology. Its information architecture is inspired by the
+[Academic Pages](https://github.com/academicpages/academicpages.github.io)
+template while retaining the existing Next.js, Sites, and GitHub Pages delivery
+workflow. The site intentionally uses only verified profile details.
 
 ## Live site
 
@@ -12,12 +13,12 @@ résumé.
 
 ## What is included
 
-- Responsive one-page personal portfolio
-- Profile, content roadmap, and contact sections
-- Honest empty states instead of fictional projects
+- Responsive academic homepage with a persistent author profile
+- Separate Publications, Talks, Teaching, Portfolio, Blog, and CV routes
+- Honest academic empty states instead of fictional records
 - One-click email copy with a mail-client fallback
 - Reduced-motion support and keyboard-friendly navigation
-- Search and social-sharing metadata with a custom Open Graph image
+- Search and social-sharing metadata with an academic Open Graph image
 - Cloudflare Worker-compatible vinext build
 - Automatic GitHub Pages deployment from the `main` branch
 
