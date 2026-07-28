@@ -838,116 +838,6 @@ html[data-language="zh"] .empty-record h3 {
   text-transform: uppercase;
 }
 
-.visitor-map-card {
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  box-shadow: 0 10px 28px rgba(35, 62, 75, 0.045);
-}
-
-.visitor-map-canvas {
-  padding: clamp(18px, 4vw, 34px);
-  background:
-    radial-gradient(circle at 50% 48%, rgba(39, 107, 143, 0.08), transparent 55%),
-    #f7fafb;
-}
-
-.visitor-map-canvas svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.visitor-map-ocean {
-  fill: #edf6f8;
-  stroke: #c8dce3;
-  stroke-width: 1;
-}
-
-.visitor-map-land path {
-  fill: #d8e6e8;
-  stroke: #ffffff;
-  stroke-width: 0.65;
-  vector-effect: non-scaling-stroke;
-}
-
-.visitor-map-dot {
-  fill: #d93b45;
-  stroke: #ffffff;
-  stroke-width: 1.2;
-  vector-effect: non-scaling-stroke;
-}
-
-.visitor-map-pulse {
-  fill: rgba(217, 59, 69, 0.18);
-  stroke: rgba(217, 59, 69, 0.38);
-  stroke-width: 1;
-  transform-origin: center;
-  animation: visitor-pulse 2.4s ease-out infinite;
-}
-
-.visitor-map-summary {
-  padding: 19px 23px 21px;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 22px;
-  border-top: 1px solid var(--line);
-}
-
-.visitor-map-summary > div {
-  display: flex;
-  align-items: baseline;
-  gap: 9px;
-  white-space: nowrap;
-}
-
-.visitor-map-summary strong {
-  color: var(--blue);
-  font-family: var(--serif);
-  font-size: 1.65rem;
-  font-weight: 600;
-}
-
-.visitor-map-summary span,
-.visitor-map-summary p,
-.visitor-map-summary a {
-  color: var(--muted);
-  font-size: 0.72rem;
-}
-
-.visitor-map-summary p {
-  margin: 0;
-  line-height: 1.5;
-}
-
-.visitor-map-summary a {
-  border-bottom: 1px dotted var(--line-dark);
-  white-space: nowrap;
-}
-
-.visitor-map-tracker {
-  width: 1px;
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  clip-path: inset(50%);
-}
-
-@keyframes visitor-pulse {
-  0% {
-    opacity: 0.95;
-    transform: scale(0.55);
-  }
-
-  70%,
-  100% {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-}
-
 .needs-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1348,20 +1238,6 @@ html[data-language="zh"] .empty-record h3 {
 
   .updates li::after {
     left: 73px;
-  }
-
-  .visitor-map-summary {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .visitor-map-summary > div {
-    white-space: normal;
-  }
-
-  .visitor-map-summary a {
-    width: fit-content;
-    margin-top: 4px;
   }
 
   .page-footer {

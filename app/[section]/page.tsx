@@ -3,7 +3,6 @@ import { CopyContact } from "../copy-contact";
 import { DocumentCard } from "../document-card";
 import { Localized } from "../localized";
 import { profile } from "../site-data";
-import { VisitorMap } from "../visitor-map";
 
 type LocalizedValue = { zh: string; en: string };
 
@@ -280,22 +279,10 @@ function CvPage() {
 
 const updateEntries = [
   {
-    zhTitle: "启用自托管访客地图",
-    enTitle: "Enabled a self-hosted visitor map",
-    zhBody: "移除第三方地图依赖，改由网站自行记录匿名城市级访问并生成红点，不保存 IP 或精确地址。",
-    enBody: "Removed the third-party map dependency and now generate markers from anonymous city-level visits without storing IPs or precise addresses.",
-  },
-  {
-    zhTitle: "修正访客统计数据链路",
-    enTitle: "Corrected visitor analytics",
-    zhBody: "修正全站访客数据记录，使地图红点与计数能够随实际访问更新。",
-    enBody: "Corrected site-wide visit recording so map markers and counts update with real traffic.",
-  },
-  {
-    zhTitle: "新增维护日志与访客地图",
-    enTitle: "Added the update log and visitor map",
-    zhBody: "上线网站更新记录，加入真实访客的城市级红点地图，并进一步精简项目与简历页面。",
-    enBody: "Published the site update log, added a city-level visitor map with red markers, and refined the Portfolio and CV pages.",
+    zhTitle: "新增网站维护日志",
+    enTitle: "Added the website update log",
+    zhBody: "上线网站更新记录，并进一步精简项目与简历页面。",
+    enBody: "Published the site update log and further refined the Portfolio and CV pages.",
   },
   {
     zhTitle: "优化文档与联系方式",
@@ -377,13 +364,6 @@ function UpdatesPage() {
         </ol>
       </section>
 
-      <section className="content-section">
-        <div className="section-heading">
-          <span>02</span>
-          <h2><Localized zh="访客地图" en="Visitor Map" /></h2>
-        </div>
-        <VisitorMap />
-      </section>
     </article>
   );
 }

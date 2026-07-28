@@ -7,7 +7,6 @@ import { LanguageToggle } from "./language-toggle";
 import { Localized } from "./localized";
 import { profile, withBasePath } from "./site-data";
 import { SiteNav } from "./site-nav";
-import { VisitorTracker } from "./visitor-tracker";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -151,8 +150,6 @@ export default function RootLayout({
 
           <main className="academic-main">{children}</main>
         </div>
-        <VisitorTracker />
-
         <footer className="page-footer">
           <div>
             <strong><Localized zh={profile.nameZh} en={profile.nameEn} /></strong>

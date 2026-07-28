@@ -115,17 +115,12 @@ test("publishes the resume and competition papers with preview and download link
   }
 });
 
-test("publishes the update history and live visitor map", async () => {
+test("publishes the update history without visitor tracking", async () => {
   const html = await (await render("/updates")).text();
 
-  assert.match(html, /新增维护日志与访客地图/);
-  assert.match(html, /修正访客统计数据链路/);
-  assert.match(html, /启用自托管访客地图/);
+  assert.match(html, /新增网站维护日志/);
   assert.match(html, /网站框架建立/);
   assert.match(html, /2026\.07\.28/);
-  assert.match(html, /最近 24 小时访客/);
-  assert.match(html, /红点表示匿名访客所在城市的近似位置/);
-  assert.match(html, /visitor-map-card/);
-  assert.doesNotMatch(html, /feed-pulse\.com|FeedPulse/);
+  assert.doesNotMatch(html, /访客地图|Visitor Map|visitor-map-card|geojs|api\/visitors/);
   assert.doesNotMatch(html, /Demo ·|演示数据|水印|Watermarked/);
 });
