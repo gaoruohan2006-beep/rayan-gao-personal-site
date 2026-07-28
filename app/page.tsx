@@ -58,7 +58,7 @@ export default function Home() {
           <Localized
             zh={
               <>
-                你好，我是 <strong>Rayan Gao</strong>，现为{" "}
+                你好，我是 <strong>高若寒</strong>，现为{" "}
                 <a href="https://www.wust.edu.cn/" target="_blank" rel="noreferrer">
                   武汉科技大学
                 </a>

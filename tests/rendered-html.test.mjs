@@ -62,12 +62,15 @@ test("renders every academic section with both complete language variants", asyn
 
 test("keeps the public profile truthful", async () => {
   const html = await (await render("/")).text();
+  assert.match(html, /高若寒/);
   assert.match(html, /Rayan Gao/);
   assert.match(html, /武汉科技大学/);
   assert.match(html, /Wuhan University of Science and Technology/);
   assert.match(html, /gaoruohan@wust\.edu\.cn/);
-  assert.match(html, /18186067758/);
-  assert.match(html, /ifhighcold0620/);
+  assert.doesNotMatch(html, /18186067758/);
+  assert.doesNotMatch(html, /ifhighcold0620/);
+  assert.match(html, /复制手机号/);
+  assert.match(html, /复制小红书号/);
   assert.match(html, /gaoruohan2006-beep/);
   assert.match(html, /统计学/);
   assert.match(html, /碳排放时滞性/);

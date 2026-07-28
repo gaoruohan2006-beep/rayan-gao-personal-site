@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { CopyContact } from "../copy-contact";
 import { DocumentCard } from "../document-card";
 import { Localized } from "../localized";
 import { profile } from "../site-data";
@@ -296,8 +297,26 @@ function CvPage() {
         </div>
         <dl className="cv-facts contact-facts">
           <div><dt><Localized zh="邮箱" en="Email" /></dt><dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd></div>
-          <div><dt><Localized zh="手机" en="Phone" /></dt><dd><a href={`tel:${profile.phone}`}>{profile.phone}</a></dd></div>
-          <div><dt><Localized zh="小红书" en="Xiaohongshu" /></dt><dd>{profile.xiaohongshu}</dd></div>
+          <div>
+            <dt><Localized zh="手机" en="Phone" /></dt>
+            <dd>
+              <CopyContact
+                encodedValue={profile.phoneEncoded}
+                labelZh="点击复制手机号"
+                labelEn="Click to copy phone number"
+              />
+            </dd>
+          </div>
+          <div>
+            <dt><Localized zh="小红书" en="Xiaohongshu" /></dt>
+            <dd>
+              <CopyContact
+                encodedValue={profile.xiaohongshuEncoded}
+                labelZh="点击复制小红书号"
+                labelEn="Click to copy Xiaohongshu ID"
+              />
+            </dd>
+          </div>
         </dl>
       </section>
 

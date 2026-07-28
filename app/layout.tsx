@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { CopyEmail } from "./copy-email";
+import { CopyContact } from "./copy-contact";
 import { LanguageToggle } from "./language-toggle";
 import { Localized } from "./localized";
 import { profile, withBasePath } from "./site-data";
@@ -18,11 +19,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: "Rayan Gao — 学术主页",
+      default: "高若寒 — 学术主页",
       template: "%s | Rayan Gao",
     },
     description:
-      "Rayan Gao 的学术个人主页。武汉科技大学统计学本科生，研究碳排放时滞性，关注数学建模与数学竞赛。",
+      "高若寒（Rayan Gao）的学术个人主页。武汉科技大学统计学本科生，研究碳排放时滞性，关注数学建模与数学竞赛。",
     openGraph: {
       title: "Rayan Gao — Academic Portfolio",
       description: "Statistics undergraduate researching temporal lag effects in carbon emissions.",
@@ -56,7 +57,7 @@ export default function RootLayout({
         <header className="masthead">
           <div className="masthead-inner">
             <Link className="site-title" href={withBasePath("/")}>
-              Rayan Gao{" "}
+              <Localized zh={profile.nameZh} en={profile.nameEn} />{" "}
               <span>
                 / <Localized zh="学术主页" en="Academic Portfolio" />
               </span>
@@ -75,12 +76,12 @@ export default function RootLayout({
               src={withBasePath("/avatar-rayan.jpg")}
               width={174}
               height={174}
-              alt="Rayan Gao profile avatar"
+              alt="高若寒 / Rayan Gao profile avatar"
               priority
               unoptimized
             />
             <div className="author-content">
-              <h2>{profile.name}</h2>
+              <h2><Localized zh={profile.nameZh} en={profile.nameEn} /></h2>
               <p className="author-role">
                 <Localized zh="统计学本科生" en={profile.role} />
               </p>
@@ -112,15 +113,21 @@ export default function RootLayout({
               <div>
                 <dt aria-hidden="true">☎</dt>
                 <dd>
-                  <a href={`tel:${profile.phone}`}>
-                    <Localized zh="手机" en="Phone" /> · {profile.phone}
-                  </a>
+                  <CopyContact
+                    encodedValue={profile.phoneEncoded}
+                    labelZh="复制手机号"
+                    labelEn="Copy phone number"
+                  />
                 </dd>
               </div>
               <div>
                 <dt aria-hidden="true">小</dt>
                 <dd>
-                  <Localized zh="小红书" en="Xiaohongshu" /> · {profile.xiaohongshu}
+                  <CopyContact
+                    encodedValue={profile.xiaohongshuEncoded}
+                    labelZh="复制小红书号"
+                    labelEn="Copy Xiaohongshu ID"
+                  />
                 </dd>
               </div>
               <div>
@@ -137,7 +144,7 @@ export default function RootLayout({
 
         <footer className="page-footer">
           <div>
-            <strong>Rayan Gao</strong>
+            <strong><Localized zh={profile.nameZh} en={profile.nameEn} /></strong>
             <p>
               <Localized
                 zh="基于 Academic Pages 信息架构构建的现代学术主页。"
@@ -152,7 +159,7 @@ export default function RootLayout({
           </div>
           <small>
             <Localized
-              zh="© 2026 Rayan Gao · 最后更新于 2026 年 7 月"
+              zh="© 2026 高若寒 · 最后更新于 2026 年 7 月"
               en="© 2026 Rayan Gao · Last updated July 2026"
             />
           </small>

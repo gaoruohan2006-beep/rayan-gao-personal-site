@@ -273,6 +273,28 @@ button {
   border-bottom: 1px dotted var(--line-dark);
 }
 
+.contact-copy {
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: 0;
+  color: #4f5a62;
+  cursor: pointer;
+  text-align: left;
+}
+
+.contact-copy:hover {
+  color: var(--blue);
+}
+
+.contact-copy i {
+  color: var(--blue);
+  font-size: 0.74em;
+  font-style: normal;
+}
+
 .copy-button {
   width: 100%;
   min-height: 42px;
@@ -743,6 +765,11 @@ html[data-language="zh"] .empty-record h3 {
 
 .cv-facts a {
   border-bottom: 1px dotted var(--line-dark);
+}
+
+.cv-facts .contact-copy {
+  color: var(--blue);
+  font-family: var(--serif);
 }
 
 .empty-academic {

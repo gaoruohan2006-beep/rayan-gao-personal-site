@@ -9,7 +9,7 @@ function applyLanguage(language: Language) {
   document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
   document.title =
     language === "zh"
-      ? "Rayan Gao — 学术主页"
+      ? "高若寒 — 学术主页"
       : "Rayan Gao — Academic Portfolio";
   localStorage.setItem("rayan-language", language);
   window.dispatchEvent(new Event("rayan-language-change"));
