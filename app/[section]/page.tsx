@@ -3,6 +3,7 @@ import { CopyContact } from "../copy-contact";
 import { DocumentCard } from "../document-card";
 import { Localized } from "../localized";
 import { profile } from "../site-data";
+import { VisitorMap } from "../visitor-map";
 
 type LocalizedValue = { zh: string; en: string };
 
@@ -114,19 +115,10 @@ function PortfolioPage() {
         kicker={{ zh: "代表作品", en: "Selected Work" }}
         title={{ zh: "项目作品", en: "Portfolio" }}
         lead={{
-          zh: "以数学建模竞赛为起点，持续整理研究、课程与代码作品。",
-          en: "A growing collection of competition, research, coursework, and software projects.",
+          zh: "竞赛、课题研究与课程项目作品。",
+          en: "Competition, research, and course projects.",
         }}
       />
-
-      <section className="prose-section">
-        <p>
-          <Localized
-            zh="以下作品均为团队竞赛成果。我担任队长，主要负责模型构建、求解思路设计与代码实现。"
-            en="The projects below are team competition entries. I served as team lead and was primarily responsible for model development, solution design, and code implementation."
-          />
-        </p>
-      </section>
 
       <section className="content-section">
         <div className="section-heading">
@@ -136,7 +128,7 @@ function PortfolioPage() {
         <div className="document-stack">
           <DocumentCard
             file="/docs/2025-cumcm-nipt.pdf"
-            meta={{ zh: "2025 · 省级一等奖 · 60 页 · 已加水印", en: "2025 · Provincial First Prize · 60 pages · Watermarked" }}
+            meta={{ zh: "2025 · 省级一等奖 · 60 页", en: "2025 · Provincial First Prize · 60 pages" }}
             title={{
               zh: "基于 Logistic 与混合优化模型的 NIPT 研究",
               en: "NIPT Study Based on Logistic and Hybrid Optimization Models",
@@ -149,7 +141,7 @@ function PortfolioPage() {
           />
           <DocumentCard
             file="/docs/2026-mathorcup-hyperlipidemia.pdf"
-            meta={{ zh: "2026 · 一等奖 · 54 页 · 已加水印", en: "2026 · First Prize · 54 pages · Watermarked" }}
+            meta={{ zh: "2026 · 一等奖 · 54 页", en: "2026 · First Prize · 54 pages" }}
             title={{
               zh: "基于多维数据特征融合和多目标动态规划的高血脂预警与干预机制",
               en: "Hyperlipidemia Warning and Intervention Using Multidimensional Data Fusion and Multi-objective Dynamic Planning",
@@ -212,87 +204,14 @@ function CvPage() {
         kicker={{ zh: "个人履历", en: "Curriculum Vitae" }}
         title={{ zh: "个人简历", en: "Curriculum Vitae" }}
         lead={{
-          zh: "教育、研究方向、课程、竞赛与联系方式。",
-          en: "Education, research, coursework, competitions, and contact details.",
+          zh: "联系方式与 PDF 简历。",
+          en: "Contact details and PDF resume.",
         }}
       />
 
-      <section className="content-section cv-section">
+      <section className="content-section">
         <div className="section-heading">
           <span>01</span>
-          <h2><Localized zh="教育经历" en="Education" /></h2>
-        </div>
-        <div className="cv-entry">
-          <div>
-            <h3>
-              <Localized
-                zh="武汉科技大学 · 统计学"
-                en="Wuhan University of Science and Technology · Statistics"
-              />
-            </h3>
-            <p><Localized zh="本科生" en="Undergraduate" /></p>
-          </div>
-          <time>2024—2028</time>
-        </div>
-      </section>
-
-      <section className="content-section">
-        <div className="section-heading">
-          <span>02</span>
-          <h2><Localized zh="研究与课程" en="Research & Coursework" /></h2>
-        </div>
-        <dl className="cv-facts">
-          <div>
-            <dt><Localized zh="研究方向" en="Research focus" /></dt>
-            <dd><Localized zh="碳排放时滞性" en="Temporal lag effects in carbon emissions" /></dd>
-          </div>
-          <div>
-            <dt><Localized zh="兴趣方向" en="Interests" /></dt>
-            <dd><Localized zh="数学建模、数学竞赛" en="Mathematical modeling and competitions" /></dd>
-          </div>
-          <div>
-            <dt><Localized zh="代表课程" en="Selected coursework" /></dt>
-            <dd><Localized zh="数学分析、高等代数" en="Mathematical Analysis and Advanced Algebra" /></dd>
-          </div>
-        </dl>
-      </section>
-
-      <section className="content-section">
-        <div className="section-heading">
-          <span>03</span>
-          <h2><Localized zh="竞赛经历" en="Competitions" /></h2>
-        </div>
-        <ol className="achievement-list">
-          <li>
-            <time>2026</time>
-            <div>
-              <strong>
-                <Localized
-                  zh="MathorCup 数学应用挑战赛一等奖"
-                  en="First Prize, MathorCup Mathematical Modeling Challenge"
-                />
-              </strong>
-              <p><Localized zh="队长 · 负责建模与代码实现" en="Team Lead · Modeling and code implementation" /></p>
-            </div>
-          </li>
-          <li>
-            <time>2025</time>
-            <div>
-              <strong>
-                <Localized
-                  zh="高教社杯全国大学生数学建模竞赛省级一等奖"
-                  en="Provincial First Prize, CUMCM"
-                />
-              </strong>
-              <p><Localized zh="队长 · 负责建模与代码实现" en="Team Lead · Modeling and code implementation" /></p>
-            </div>
-          </li>
-        </ol>
-      </section>
-
-      <section className="content-section">
-        <div className="section-heading">
-          <span>04</span>
           <h2><Localized zh="联系方式" en="Contact" /></h2>
         </div>
         <dl className="cv-facts contact-facts">
@@ -317,12 +236,22 @@ function CvPage() {
             </dd>
           </div>
           <div>
-            <dt><Localized zh="小红书" en="Xiaohongshu" /></dt>
+            <dt><Localized zh="小红书" en="RedNote" /></dt>
             <dd>
               <CopyContact
                 encodedValue={profile.xiaohongshuEncoded}
                 labelZh="点击复制小红书号"
-                labelEn="Click to copy Xiaohongshu ID"
+                labelEn="Click to copy RedNote ID"
+              />
+            </dd>
+          </div>
+          <div>
+            <dt><Localized zh="抖音" en="TikTok" /></dt>
+            <dd>
+              <CopyContact
+                encodedValue={profile.tiktokEncoded}
+                labelZh="点击复制抖音号"
+                labelEn="Click to copy TikTok ID"
               />
             </dd>
           </div>
@@ -331,12 +260,12 @@ function CvPage() {
 
       <section className="content-section">
         <div className="section-heading">
-          <span>05</span>
+          <span>02</span>
           <h2><Localized zh="PDF 简历" en="PDF Resume" /></h2>
         </div>
         <DocumentCard
           file="/docs/rayan-gao-cv.pdf"
-          meta={{ zh: "个人简历 · 1 页 · 已加水印", en: "Resume · 1 page · Watermarked" }}
+          meta={{ zh: "个人简历 · 1 页", en: "Resume · 1 page" }}
           title={{ zh: "高若寒个人简历", en: "Rayan Gao Resume" }}
           description={{
             zh: "可直接在线预览，也可以下载保存。",
@@ -344,6 +273,104 @@ function CvPage() {
           }}
           previewTitle="Rayan Gao resume preview"
         />
+      </section>
+    </article>
+  );
+}
+
+const updateEntries = [
+  {
+    zhTitle: "新增维护日志与访客地图",
+    enTitle: "Added the update log and visitor map",
+    zhBody: "上线网站更新记录，加入真实访客的城市级红点地图，并进一步精简项目与简历页面。",
+    enBody: "Published the site update log, added a city-level visitor map with red markers, and refined the Portfolio and CV pages.",
+  },
+  {
+    zhTitle: "优化文档与联系方式",
+    enTitle: "Improved documents and contact details",
+    zhBody: "优化简历与竞赛作品的版权保护方式，统一邮箱、手机和社交账号的点击复制交互。",
+    enBody: "Improved copyright protection for the resume and competition papers, with consistent click-to-copy contact actions.",
+  },
+  {
+    zhTitle: "增强隐私保护",
+    enTitle: "Strengthened contact privacy",
+    zhBody: "手机与社交账号改为隐藏显示，仅在点击时复制到剪贴板。",
+    enBody: "Kept phone and social handles hidden while preserving one-click copy access.",
+  },
+  {
+    zhTitle: "补充个人资料与项目作品",
+    enTitle: "Expanded profile and project work",
+    zhBody: "更新头像、研究方向、课程与竞赛经历，并加入简历及两份数学建模作品的在线预览与下载。",
+    enBody: "Updated the profile, research interests, coursework, and awards, and added previews and downloads for the resume and two modeling papers.",
+  },
+  {
+    zhTitle: "上线中英文切换",
+    enTitle: "Launched bilingual modes",
+    zhBody: "建立完整的中文与英文界面，并保存访客的语言选择。",
+    enBody: "Introduced complete Chinese and English interfaces with persistent language preference.",
+  },
+  {
+    zhTitle: "采用学术主页结构",
+    enTitle: "Adopted an academic portfolio structure",
+    zhBody: "参考 Academic Pages 重构导航、个人侧栏与学术内容页面。",
+    enBody: "Restructured navigation, profile details, and content pages following Academic Pages conventions.",
+  },
+  {
+    zhTitle: "启用 GitHub Pages",
+    enTitle: "Enabled GitHub Pages",
+    zhBody: "配置自动构建与部署流程，使网站可以通过 GitHub 公开访问。",
+    enBody: "Configured automated builds and deployment for public access through GitHub Pages.",
+  },
+  {
+    zhTitle: "网站框架建立",
+    enTitle: "Created the website foundation",
+    zhBody: "完成个人学术主页的初始框架、浅色视觉系统与响应式布局。",
+    enBody: "Built the initial academic site framework, light visual system, and responsive layout.",
+  },
+] as const;
+
+function UpdatesPage() {
+  return (
+    <article className="content-page">
+      <PageHeader
+        kicker={{ zh: "维护记录", en: "Maintenance Log" }}
+        title={{ zh: "网站维护更新", en: "Site Updates" }}
+        lead={{
+          zh: "记录网站的建设、内容补充与体验优化。",
+          en: "A record of site development, content additions, and experience improvements.",
+        }}
+      />
+
+      <section className="content-section">
+        <div className="section-heading">
+          <span>01</span>
+          <h2><Localized zh="更新记录" en="Update History" /></h2>
+        </div>
+        <ol className="updates">
+          {updateEntries.map((entry, index) => (
+            <li key={entry.zhTitle}>
+              <time dateTime="2026-07-28">2026.07.28</time>
+              <div>
+                <strong><Localized zh={entry.zhTitle} en={entry.enTitle} /></strong>
+                <p><Localized zh={entry.zhBody} en={entry.enBody} /></p>
+                <small>
+                  <Localized
+                    zh={`更新 ${String(updateEntries.length - index).padStart(2, "0")}`}
+                    en={`Update ${String(updateEntries.length - index).padStart(2, "0")}`}
+                  />
+                </small>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="content-section">
+        <div className="section-heading">
+          <span>02</span>
+          <h2><Localized zh="访客地图" en="Visitor Map" /></h2>
+        </div>
+        <VisitorMap />
       </section>
     </article>
   );
@@ -383,7 +410,7 @@ function GenericSection({ content }: { content: SectionContent }) {
 }
 
 export function generateStaticParams() {
-  return [...Object.keys(sections), "portfolio", "cv"].map((section) => ({ section }));
+  return [...Object.keys(sections), "portfolio", "cv", "updates"].map((section) => ({ section }));
 }
 
 export default async function AcademicSection({
@@ -394,6 +421,7 @@ export default async function AcademicSection({
   const { section } = await params;
   if (section === "portfolio") return <PortfolioPage />;
   if (section === "cv") return <CvPage />;
+  if (section === "updates") return <UpdatesPage />;
   const content = sections[section];
   if (!content) notFound();
   return <GenericSection content={content} />;

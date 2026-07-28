@@ -39,6 +39,7 @@ test("renders a unified bilingual interface with Chinese as the default", async 
   assert.match(html, /关于我/);
   assert.match(html, /About Me/);
   assert.match(html, /我永远会向堕落的自己开枪，我因瑕疵而鲜活/);
+  assert.doesNotMatch(html, /我的座右铭|My motto/);
   assert.doesNotMatch(html, /class="copy-button"/);
 });
 
@@ -50,6 +51,7 @@ test("renders every academic section with both complete language variants", asyn
     ["portfolio", "项目作品", "Portfolio"],
     ["blog", "文章与笔记", "Blog Posts"],
     ["cv", "个人简历", "Curriculum Vitae"],
+    ["updates", "网站维护更新", "Site Updates"],
   ];
 
   for (const [route, chineseTitle, englishTitle] of routes) {
@@ -73,7 +75,11 @@ test("keeps the public profile truthful", async () => {
   assert.doesNotMatch(html, /ifhighcold0620/);
   assert.match(html, /复制手机号/);
   assert.match(html, /复制小红书号/);
+  assert.match(html, /复制抖音号/);
   assert.match(html, /复制邮箱/);
+  assert.match(html, /Copy RedNote ID/);
+  assert.match(html, /Copy TikTok ID/);
+  assert.doesNotMatch(html, /Rayan_G/);
   assert.match(html, /gaoruohan2006-beep/);
   assert.match(html, /统计学/);
   assert.match(html, /碳排放时滞性/);
@@ -87,9 +93,13 @@ test("publishes the resume and competition papers with preview and download link
   assert.match(portfolioHtml, /2025-cumcm-nipt\.pdf#view=FitH/);
   assert.match(portfolioHtml, /2026-mathorcup-hyperlipidemia\.pdf#view=FitH/);
   assert.match(portfolioHtml, /队长，负责建模与代码实现/);
-  assert.match(portfolioHtml, /已加水印/);
+  assert.match(portfolioHtml, /竞赛、课题研究与课程项目作品/);
+  assert.doesNotMatch(portfolioHtml, /以下作品均为团队竞赛成果/);
+  assert.doesNotMatch(portfolioHtml, /已加水印|Watermarked/);
   assert.match(cvHtml, /rayan-gao-cv\.pdf#view=FitH/);
-  assert.match(cvHtml, /已加水印/);
+  assert.match(cvHtml, /Click to copy RedNote ID/);
+  assert.match(cvHtml, /Click to copy TikTok ID/);
+  assert.doesNotMatch(cvHtml, /教育经历|Research & Coursework|已加水印|Watermarked/);
   assert.match(cvHtml, /download/);
 
   const assets = [
@@ -103,4 +113,17 @@ test("publishes the resume and competition papers with preview and download link
     const info = await stat(new URL(asset, import.meta.url));
     assert.ok(info.size > 100_000, asset);
   }
+});
+
+test("publishes the update history and live visitor map", async () => {
+  const html = await (await render("/updates")).text();
+
+  assert.match(html, /新增维护日志与访客地图/);
+  assert.match(html, /网站框架建立/);
+  assert.match(html, /2026\.07\.28/);
+  assert.match(html, /最近 24 小时访客/);
+  assert.match(html, /红点表示访客所在城市的近似位置/);
+  assert.match(html, /visitor-map-card/);
+  assert.match(html, /feed-pulse\.com/);
+  assert.doesNotMatch(html, /Demo ·|演示数据|水印|Watermarked/);
 });

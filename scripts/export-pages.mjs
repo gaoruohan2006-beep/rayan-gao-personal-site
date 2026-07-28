@@ -17,6 +17,7 @@ const routes = [
   "portfolio",
   "blog",
   "cv",
+  "updates",
 ];
 
 const server = spawn(
@@ -66,7 +67,8 @@ try {
   for (const route of routes) {
     let html = await waitForPage(route);
     html = html
-      .replaceAll(`${localUrl}/og-academic.png`, `${publicUrl}/og-academic.png`)
+      .replaceAll(`https://${hostname}:${port}`, publicUrl)
+      .replaceAll(localUrl, publicUrl)
       .replaceAll("http://localhost:3000/og-academic.png", `${publicUrl}/og-academic.png`)
       .replaceAll("/assets/", `${basePath}/assets/`);
 

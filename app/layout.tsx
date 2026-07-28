@@ -127,7 +127,17 @@ export default function RootLayout({
                   <CopyContact
                     encodedValue={profile.xiaohongshuEncoded}
                     labelZh="复制小红书号"
-                    labelEn="Copy Xiaohongshu ID"
+                    labelEn="Copy RedNote ID"
+                  />
+                </dd>
+              </div>
+              <div>
+                <dt aria-hidden="true">♪</dt>
+                <dd>
+                  <CopyContact
+                    encodedValue={profile.tiktokEncoded}
+                    labelZh="复制抖音号"
+                    labelEn="Copy TikTok ID"
                   />
                 </dd>
               </div>
@@ -153,11 +163,6 @@ export default function RootLayout({
           </div>
           <div className="footer-links">
             <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-            <CopyContact
-              encodedValue={profile.emailEncoded}
-              labelZh="复制邮箱"
-              labelEn="Copy email"
-            />
             <a href="#top"><Localized zh="返回顶部 ↑" en="Top ↑" /></a>
           </div>
           <small>

@@ -8,6 +8,7 @@ export const profile = {
   emailEncoded: "Z2FvcnVvaGFuQHd1c3QuZWR1LmNu",
   phoneEncoded: "MTgxODYwNjc3NTg=",
   xiaohongshuEncoded: "aWZoaWdoY29sZDA2MjA=",
+  tiktokEncoded: "UmF5YW5fRw==",
   github: "https://github.com/gaoruohan2006-beep",
 } as const;
 
@@ -19,6 +20,7 @@ export const navItems = [
   { labelZh: "项目", labelEn: "Portfolio", href: "/portfolio/" },
   { labelZh: "文章", labelEn: "Blog Posts", href: "/blog/" },
   { labelZh: "简历", labelEn: "CV", href: "/cv/" },
+  { labelZh: "网站更新", labelEn: "Site Updates", href: "/updates/" },
 ] as const;
 
 export const siteBasePath = process.env.NEXT_PUBLIC_SITE_BASE_PATH ?? "";

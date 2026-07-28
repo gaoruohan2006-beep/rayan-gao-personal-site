@@ -47,8 +47,8 @@ export default function Home() {
         <h1><Localized zh="关于我" en="About Me" /></h1>
         <p className="page-lead">
           <Localized
-            zh="统计学、碳排放研究与数学建模实践。"
-            en="Statistics, carbon-emission research, and mathematical modeling."
+            zh="个人学术基本介绍"
+            en="A brief academic introduction"
           />
         </p>
       </header>
@@ -79,8 +79,8 @@ export default function Home() {
         </p>
         <p>
           <Localized
-            zh="我的座右铭：我永远会向堕落的自己开枪，我因瑕疵而鲜活。"
-            en="My motto: I will always take aim at the version of myself that falls; my flaws are what make me alive."
+            zh="我永远会向堕落的自己开枪，我因瑕疵而鲜活。"
+            en="I will always take aim at the version of myself that falls; my flaws are what make me alive."
           />
         </p>
       </section>
