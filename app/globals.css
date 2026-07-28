@@ -12,8 +12,10 @@
   --blue-dark: #164d6a;
   --blue-pale: #e9f3f7;
   --teal: #3d8b86;
-  --serif: Georgia, "Times New Roman", "Songti SC", serif;
-  --sans: "Aptos", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", "Noto Serif SC",
+    "Source Han Serif SC", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+  --sans: Inter, "SF Pro Text", "SF Pro Display", "Noto Sans SC",
+    "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
 }
 
 * {
@@ -35,6 +37,24 @@ body {
   font-size: 16px;
   line-height: 1.65;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+}
+
+.lang-en {
+  display: none;
+}
+
+.lang-zh {
+  display: contents;
+}
+
+html[data-language="en"] .lang-zh {
+  display: none;
+}
+
+html[data-language="en"] .lang-en {
+  display: contents;
 }
 
 a {
@@ -77,8 +97,9 @@ button {
   flex: 0 0 auto;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 1.06rem;
+  font-size: 1.08rem;
   font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
 .site-title span {
@@ -89,12 +110,18 @@ button {
   letter-spacing: 0.03em;
 }
 
-.masthead-nav {
+.masthead-actions {
   margin-left: auto;
   display: flex;
   align-items: stretch;
-  gap: 28px;
+  gap: 24px;
   align-self: stretch;
+}
+
+.masthead-nav {
+  display: flex;
+  align-items: stretch;
+  gap: 25px;
 }
 
 .masthead-nav a {
@@ -102,8 +129,9 @@ button {
   display: flex;
   align-items: center;
   color: #47545d;
-  font-size: 0.78rem;
-  font-weight: 650;
+  font-size: 0.79rem;
+  font-weight: 600;
+  letter-spacing: 0.015em;
   white-space: nowrap;
 }
 
@@ -126,6 +154,35 @@ button {
 .masthead-nav a:hover::after,
 .masthead-nav a.active::after {
   right: 0;
+}
+
+.language-toggle {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.language-toggle button {
+  padding: 4px 5px;
+  background: transparent;
+  border: 0;
+  color: var(--faint);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  transition: color 160ms ease;
+}
+
+.language-toggle button:hover,
+.language-toggle button.active {
+  color: var(--blue);
+}
+
+.language-toggle > span {
+  color: var(--line-dark);
+  font-size: 0.67rem;
 }
 
 .academic-shell {
@@ -165,7 +222,9 @@ button {
   margin: 24px 0 3px;
   font-family: var(--serif);
   font-size: 1.54rem;
+  font-weight: 650;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .author-role {
@@ -286,6 +345,14 @@ button {
   font-weight: 500;
   line-height: 1.03;
   letter-spacing: -0.045em;
+}
+
+html[data-language="zh"] .page-header h1,
+html[data-language="zh"] .section-heading h2,
+html[data-language="zh"] .affiliation-card h3,
+html[data-language="zh"] .empty-academic h3,
+html[data-language="zh"] .empty-record h3 {
+  letter-spacing: -0.025em;
 }
 
 .page-lead {
@@ -712,9 +779,14 @@ button {
     align-items: center;
   }
 
-  .masthead-nav {
+  .masthead-actions {
     width: 100%;
     margin: 0;
+    gap: 16px;
+  }
+
+  .masthead-nav {
+    flex: 1;
     gap: 24px;
     overflow-x: auto;
     scrollbar-width: none;
@@ -726,6 +798,11 @@ button {
 
   .masthead-nav a {
     min-height: 38px;
+  }
+
+  .language-toggle {
+    min-height: 38px;
+    flex: 0 0 auto;
   }
 
   .academic-shell {
@@ -782,6 +859,14 @@ button {
 @media (max-width: 700px) {
   .site-title span {
     display: none;
+  }
+
+  .masthead-actions {
+    gap: 10px;
+  }
+
+  .masthead-nav {
+    gap: 20px;
   }
 
   .academic-shell {

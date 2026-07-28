@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Localized } from "./localized";
 
 export function CopyEmail({ email }: { email: string }) {
   const [copied, setCopied] = useState(false);
@@ -17,7 +18,13 @@ export function CopyEmail({ email }: { email: string }) {
 
   return (
     <button className="copy-button" type="button" onClick={copy} aria-live="polite">
-      <span>{copied ? "Email copied" : "Copy email"}</span>
+      <span>
+        {copied ? (
+          <Localized zh="邮箱已复制" en="Email copied" />
+        ) : (
+          <Localized zh="复制邮箱" en="Copy email" />
+        )}
+      </span>
       <i aria-hidden="true">{copied ? "✓" : "↗"}</i>
     </button>
   );

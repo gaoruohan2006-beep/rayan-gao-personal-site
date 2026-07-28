@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { CopyEmail } from "./copy-email";
+import { LanguageToggle } from "./language-toggle";
+import { Localized } from "./localized";
 import { profile, withBasePath } from "./site-data";
 import { SiteNav } from "./site-nav";
 import "./globals.css";
@@ -15,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: "Rayan Gao — Academic Portfolio",
+      default: "Rayan Gao — 学术主页",
       template: "%s | Rayan Gao",
     },
     description:
@@ -40,14 +42,28 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" data-language="zh" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var l=localStorage.getItem('rayan-language');var v=l==='en'?'en':'zh';document.documentElement.dataset.language=v;document.documentElement.lang=v==='zh'?'zh-CN':'en'}catch(e){}",
+          }}
+        />
+      </head>
       <body>
         <header className="masthead">
           <div className="masthead-inner">
             <Link className="site-title" href={withBasePath("/")}>
-              Rayan Gao <span>/ Academic Portfolio</span>
+              Rayan Gao{" "}
+              <span>
+                / <Localized zh="学术主页" en="Academic Portfolio" />
+              </span>
             </Link>
-            <SiteNav />
+            <div className="masthead-actions">
+              <SiteNav />
+              <LanguageToggle />
+            </div>
           </div>
         </header>
 
@@ -56,24 +72,33 @@ export default function RootLayout({
             <div className="avatar" aria-label="Rayan Gao initials">RG</div>
             <div className="author-content">
               <h2>{profile.name}</h2>
-              <p className="author-role">{profile.role}</p>
+              <p className="author-role">
+                <Localized zh="学生" en={profile.role} />
+              </p>
               <p className="author-bio">
-                Building a truthful academic record, one project at a time.
+                <Localized
+                  zh="用真实的项目与经历，逐步建立个人学术档案。"
+                  en="Building a truthful academic record, one project at a time."
+                />
               </p>
             </div>
 
             <dl className="author-details">
               <div>
                 <dt aria-hidden="true">◎</dt>
-                <dd>{profile.location}</dd>
+                <dd><Localized zh="中国武汉" en={profile.location} /></dd>
               </div>
               <div>
                 <dt aria-hidden="true">⌂</dt>
-                <dd>{profile.schoolZh}</dd>
+                <dd><Localized zh={profile.schoolZh} en={profile.school} /></dd>
               </div>
               <div>
                 <dt aria-hidden="true">@</dt>
-                <dd><a href={`mailto:${profile.email}`}>Email</a></dd>
+                <dd>
+                  <a href={`mailto:${profile.email}`}>
+                    <Localized zh="邮箱" en="Email" />
+                  </a>
+                </dd>
               </div>
               <div>
                 <dt aria-hidden="true">⌘</dt>
@@ -90,14 +115,24 @@ export default function RootLayout({
         <footer className="page-footer">
           <div>
             <strong>Rayan Gao</strong>
-            <p>Academic portfolio powered by a modern Academic Pages-inspired system.</p>
+            <p>
+              <Localized
+                zh="基于 Academic Pages 信息架构构建的现代学术主页。"
+                en="A modern academic portfolio inspired by Academic Pages."
+              />
+            </p>
           </div>
           <div className="footer-links">
             <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-            <a href={`mailto:${profile.email}`}>Email</a>
-            <a href="#top">Top ↑</a>
+            <a href={`mailto:${profile.email}`}><Localized zh="邮箱" en="Email" /></a>
+            <a href="#top"><Localized zh="返回顶部 ↑" en="Top ↑" /></a>
           </div>
-          <small>© 2026 Rayan Gao · Last updated July 2026</small>
+          <small>
+            <Localized
+              zh="© 2026 Rayan Gao · 最后更新于 2026 年 7 月"
+              en="© 2026 Rayan Gao · Last updated July 2026"
+            />
+          </small>
         </footer>
       </body>
     </html>

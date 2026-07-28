@@ -14,6 +14,7 @@ workflow. The site intentionally uses only verified profile details.
 ## What is included
 
 - Responsive academic homepage with a persistent author profile
+- Unified Chinese and English modes with a remembered `中 / EN` switch
 - Separate Publications, Talks, Teaching, Portfolio, Blog, and CV routes
 - Honest academic empty states instead of fictional records
 - One-click email copy with a mail-client fallback
@@ -58,7 +59,7 @@ Useful next additions:
 1. Add Rayan's major and research interests.
 2. Replace the three content placeholders with real project case studies.
 3. Add a résumé download when a final PDF is available.
-4. Add Rayan's GitHub profile after the username is confirmed.
+4. Add verified links to future papers, projects, and talks as they become available.
 
 ## License
 

@@ -9,13 +9,13 @@ export const profile = {
 } as const;
 
 export const navItems = [
-  { label: "About", href: "/" },
-  { label: "Publications", href: "/publications/" },
-  { label: "Talks", href: "/talks/" },
-  { label: "Teaching", href: "/teaching/" },
-  { label: "Portfolio", href: "/portfolio/" },
-  { label: "Blog Posts", href: "/blog/" },
-  { label: "CV", href: "/cv/" },
+  { labelZh: "关于我", labelEn: "About", href: "/" },
+  { labelZh: "论文", labelEn: "Publications", href: "/publications/" },
+  { labelZh: "报告", labelEn: "Talks", href: "/talks/" },
+  { labelZh: "教学", labelEn: "Teaching", href: "/teaching/" },
+  { labelZh: "项目", labelEn: "Portfolio", href: "/portfolio/" },
+  { labelZh: "文章", labelEn: "Blog Posts", href: "/blog/" },
+  { labelZh: "简历", labelEn: "CV", href: "/cv/" },
 ] as const;
 
 export const siteBasePath = process.env.NEXT_PUBLIC_SITE_BASE_PATH ?? "";

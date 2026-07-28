@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Localized } from "./localized";
 import { navItems, siteBasePath, withBasePath } from "./site-data";
 
 export function SiteNav() {
@@ -24,7 +25,7 @@ export function SiteNav() {
             href={withBasePath(item.href)}
             key={item.href}
           >
-            {item.label}
+            <Localized zh={item.labelZh} en={item.labelEn} />
           </Link>
         );
       })}
