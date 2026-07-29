@@ -16,7 +16,6 @@ const routes = [
   "teaching",
   "portfolio",
   "blog",
-  "cv",
   "updates",
 ];
 
