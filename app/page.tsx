@@ -178,10 +178,6 @@ export default function Home() {
             <Localized zh="查看竞赛作品" en="View competition work" />
             <span aria-hidden="true">→</span>
           </Link>
-          <Link className="text-button" href={withBasePath("/cv/")}>
-            <Localized zh="查看完整简历" en="View full CV" />
-            <span aria-hidden="true">→</span>
-          </Link>
         </div>
       </section>
     </article>

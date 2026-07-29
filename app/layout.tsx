@@ -112,16 +112,6 @@ export default function RootLayout({
                 </dd>
               </div>
               <div>
-                <dt aria-hidden="true">☎</dt>
-                <dd>
-                  <CopyContact
-                    encodedValue={profile.phoneEncoded}
-                    labelZh="复制手机号"
-                    labelEn="Copy phone number"
-                  />
-                </dd>
-              </div>
-              <div>
                 <dt aria-hidden="true">小</dt>
                 <dd>
                   <CopyContact

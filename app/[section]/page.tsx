@@ -1,8 +1,6 @@
 import { notFound } from "next/navigation";
-import { CopyContact } from "../copy-contact";
 import { DocumentCard } from "../document-card";
 import { Localized } from "../localized";
-import { profile } from "../site-data";
 
 type LocalizedValue = { zh: string; en: string };
 
@@ -196,111 +194,30 @@ function PortfolioPage() {
   );
 }
 
-function CvPage() {
-  return (
-    <article className="content-page">
-      <PageHeader
-        kicker={{ zh: "个人履历", en: "Curriculum Vitae" }}
-        title={{ zh: "个人简历", en: "Curriculum Vitae" }}
-        lead={{
-          zh: "联系方式与 PDF 简历。",
-          en: "Contact details and PDF resume.",
-        }}
-      />
-
-      <section className="content-section">
-        <div className="section-heading">
-          <span>01</span>
-          <h2><Localized zh="联系方式" en="Contact" /></h2>
-        </div>
-        <dl className="cv-facts contact-facts">
-          <div>
-            <dt><Localized zh="邮箱" en="Email" /></dt>
-            <dd>
-              <CopyContact
-                encodedValue={profile.emailEncoded}
-                labelZh="点击复制邮箱"
-                labelEn="Click to copy email"
-              />
-            </dd>
-          </div>
-          <div>
-            <dt><Localized zh="手机" en="Phone" /></dt>
-            <dd>
-              <CopyContact
-                encodedValue={profile.phoneEncoded}
-                labelZh="点击复制手机号"
-                labelEn="Click to copy phone number"
-              />
-            </dd>
-          </div>
-          <div>
-            <dt><Localized zh="小红书" en="RedNote" /></dt>
-            <dd>
-              <CopyContact
-                encodedValue={profile.xiaohongshuEncoded}
-                labelZh="点击复制小红书号"
-                labelEn="Click to copy RedNote ID"
-              />
-            </dd>
-          </div>
-          <div>
-            <dt><Localized zh="抖音" en="TikTok" /></dt>
-            <dd>
-              <CopyContact
-                encodedValue={profile.tiktokEncoded}
-                labelZh="点击复制抖音号"
-                labelEn="Click to copy TikTok ID"
-              />
-            </dd>
-          </div>
-        </dl>
-      </section>
-
-      <section className="content-section">
-        <div className="section-heading">
-          <span>02</span>
-          <h2><Localized zh="PDF 简历" en="PDF Resume" /></h2>
-        </div>
-        <DocumentCard
-          file="/docs/rayan-gao-cv.pdf"
-          meta={{ zh: "个人简历 · 1 页", en: "Resume · 1 page" }}
-          title={{ zh: "高若寒个人简历", en: "Rayan Gao Resume" }}
-          description={{
-            zh: "可直接在线预览，也可以下载保存。",
-            en: "Preview the resume online or download a copy.",
-          }}
-          previewTitle="Rayan Gao resume preview"
-        />
-      </section>
-    </article>
-  );
-}
-
 const updateEntries = [
   {
     zhTitle: "新增网站维护日志",
     enTitle: "Added the website update log",
-    zhBody: "上线网站更新记录，并进一步精简项目与简历页面。",
-    enBody: "Published the site update log and further refined the Portfolio and CV pages.",
+    zhBody: "上线网站更新记录，并进一步精简项目页面。",
+    enBody: "Published the site update log and further refined the Portfolio page.",
   },
   {
     zhTitle: "优化文档与联系方式",
     enTitle: "Improved documents and contact details",
-    zhBody: "优化简历与竞赛作品的版权保护方式，统一邮箱、手机和社交账号的点击复制交互。",
-    enBody: "Improved copyright protection for the resume and competition papers, with consistent click-to-copy contact actions.",
+    zhBody: "优化竞赛作品的版权保护方式，统一邮箱和社交账号的点击复制交互。",
+    enBody: "Improved copyright protection for competition papers, with consistent click-to-copy contact actions.",
   },
   {
     zhTitle: "增强隐私保护",
     enTitle: "Strengthened contact privacy",
-    zhBody: "手机与社交账号改为隐藏显示，仅在点击时复制到剪贴板。",
-    enBody: "Kept phone and social handles hidden while preserving one-click copy access.",
+    zhBody: "社交账号改为隐藏显示，仅在点击时复制到剪贴板。",
+    enBody: "Kept social handles hidden while preserving one-click copy access.",
   },
   {
     zhTitle: "补充个人资料与项目作品",
     enTitle: "Expanded profile and project work",
-    zhBody: "更新头像、研究方向、课程与竞赛经历，并加入简历及两份数学建模作品的在线预览与下载。",
-    enBody: "Updated the profile, research interests, coursework, and awards, and added previews and downloads for the resume and two modeling papers.",
+    zhBody: "更新头像、研究方向、课程与竞赛经历，并加入两份数学建模作品的在线预览与下载。",
+    enBody: "Updated the profile, research interests, coursework, and awards, and added previews and downloads for two modeling papers.",
   },
   {
     zhTitle: "上线中英文切换",
@@ -402,7 +319,7 @@ function GenericSection({ content }: { content: SectionContent }) {
 }
 
 export function generateStaticParams() {
-  return [...Object.keys(sections), "portfolio", "cv", "updates"].map((section) => ({ section }));
+  return [...Object.keys(sections), "portfolio", "updates"].map((section) => ({ section }));
 }
 
 export default async function AcademicSection({
@@ -412,7 +329,6 @@ export default async function AcademicSection({
 }) {
   const { section } = await params;
   if (section === "portfolio") return <PortfolioPage />;
-  if (section === "cv") return <CvPage />;
   if (section === "updates") return <UpdatesPage />;
   const content = sections[section];
   if (!content) notFound();

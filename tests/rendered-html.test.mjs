@@ -50,7 +50,6 @@ test("renders every academic section with both complete language variants", asyn
     ["teaching", "教学与指导", "Teaching"],
     ["portfolio", "项目作品", "Portfolio"],
     ["blog", "文章与笔记", "Blog Posts"],
-    ["cv", "个人简历", "Curriculum Vitae"],
     ["updates", "网站维护更新", "Site Updates"],
   ];
 
@@ -73,7 +72,7 @@ test("keeps the public profile truthful", async () => {
   assert.doesNotMatch(html, /gaoruohan@wust\.edu\.cn/);
   assert.doesNotMatch(html, /18186067758/);
   assert.doesNotMatch(html, /ifhighcold0620/);
-  assert.match(html, /复制手机号/);
+  assert.doesNotMatch(html, /复制手机号|Copy phone number|phoneEncoded/);
   assert.match(html, /复制小红书号/);
   assert.match(html, /复制抖音号/);
   assert.match(html, /复制邮箱/);
@@ -86,9 +85,8 @@ test("keeps the public profile truthful", async () => {
   assert.doesNotMatch(html, /Lorem ipsum|John Doe|Example University/i);
 });
 
-test("publishes the resume and competition papers with preview and download links", async () => {
+test("publishes competition papers without a CV section", async () => {
   const portfolioHtml = await (await render("/portfolio")).text();
-  const cvHtml = await (await render("/cv")).text();
 
   assert.match(portfolioHtml, /2025-cumcm-nipt\.pdf#view=FitH/);
   assert.match(portfolioHtml, /2026-mathorcup-hyperlipidemia\.pdf#view=FitH/);
@@ -96,15 +94,11 @@ test("publishes the resume and competition papers with preview and download link
   assert.match(portfolioHtml, /竞赛、课题研究与课程项目作品/);
   assert.doesNotMatch(portfolioHtml, /以下作品均为团队竞赛成果/);
   assert.doesNotMatch(portfolioHtml, /已加水印|Watermarked/);
-  assert.match(cvHtml, /rayan-gao-cv\.pdf#view=FitH/);
-  assert.match(cvHtml, /Click to copy RedNote ID/);
-  assert.match(cvHtml, /Click to copy TikTok ID/);
-  assert.doesNotMatch(cvHtml, /教育经历|Research & Coursework|已加水印|Watermarked/);
-  assert.match(cvHtml, /download/);
+  const cvResponse = await render("/cv");
+  assert.equal(cvResponse.status, 404);
 
   const assets = [
     "../public/avatar-rayan.jpg",
-    "../public/docs/rayan-gao-cv.pdf",
     "../public/docs/2025-cumcm-nipt.pdf",
     "../public/docs/2026-mathorcup-hyperlipidemia.pdf",
   ];
