@@ -22,10 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | Rayan Gao",
     },
     description:
-      "高若寒（Rayan Gao）的学术个人主页。武汉科技大学统计学本科生，研究碳排放时滞性，关注数学建模与数学竞赛。",
+      "高若寒（Rayan Gao）的学术个人主页。武汉科技大学统计学本科生，研究方向为组合优化与 AI4s，关注数学建模与数学竞赛。",
     openGraph: {
       title: "Rayan Gao — Academic Portfolio",
-      description: "Statistics undergraduate researching temporal lag effects in carbon emissions.",
+      description: "Statistics undergraduate interested in combinatorial optimization, AI for Science, and mathematical modeling.",
       type: "website",
       url: base,
       images: [{ url: ogImage, width: 1734, height: 907, alt: "Rayan Gao academic portfolio" }],
@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "Rayan Gao — Academic Portfolio",
-      description: "Statistics undergraduate researching temporal lag effects in carbon emissions.",
+      description: "Statistics undergraduate interested in combinatorial optimization, AI for Science, and mathematical modeling.",
       images: [ogImage],
     },
   };
@@ -86,8 +86,8 @@ export default function RootLayout({
               </p>
               <p className="author-bio">
                 <Localized
-                  zh="研究碳排放时滞性，关注数学建模与数学竞赛。"
-                  en="Studying temporal lag effects in carbon emissions, with interests in mathematical modeling and competitions."
+                  zh="研究方向：组合优化、AI4s"
+                  en="Research interests: combinatorial optimization and AI for Science (AI4S)."
                 />
               </p>
             </div>

@@ -67,6 +67,9 @@ test("keeps the public profile truthful", async () => {
   const html = await (await render("/")).text();
   assert.match(html, /高若寒/);
   assert.match(html, /Rayan Gao/);
+  assert.match(html, /研究方向：组合优化、AI4s/);
+  assert.match(html, /Research interests: combinatorial optimization and AI for Science \(AI4S\)\./);
+  assert.doesNotMatch(html, /研究碳排放时滞性，关注数学建模与数学竞赛。/);
   assert.match(html, /武汉科技大学/);
   assert.match(html, /Wuhan University of Science and Technology/);
   assert.doesNotMatch(html, /gaoruohan@wust\.edu\.cn/);
@@ -81,7 +84,10 @@ test("keeps the public profile truthful", async () => {
   assert.doesNotMatch(html, /Rayan_G/);
   assert.match(html, /gaoruohan2006-beep/);
   assert.match(html, /统计学/);
-  assert.match(html, /碳排放时滞性/);
+  assert.match(html, /组合优化/);
+  assert.match(html, /AI4s/);
+  assert.match(html, /数学建模与竞赛/);
+  assert.doesNotMatch(html, /碳排放时滞性|Carbon Emission Time Lags/);
   assert.doesNotMatch(html, /Lorem ipsum|John Doe|Example University/i);
 });
 

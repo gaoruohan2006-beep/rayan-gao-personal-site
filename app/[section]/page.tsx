@@ -163,8 +163,8 @@ function PortfolioPage() {
             <h3><Localized zh="研究项目" en="Research Projects" /></h3>
             <p>
               <Localized
-                zh="后续收录碳排放时滞性研究与相关统计分析。"
-                en="Future work on carbon-emission time lags and related statistical analysis."
+                zh="后续收录组合优化、AI4s 与相关统计分析研究。"
+                en="Future work on combinatorial optimization, AI for Science, and related statistical analysis."
               />
             </p>
           </article>

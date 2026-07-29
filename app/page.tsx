@@ -5,24 +5,24 @@ import { withBasePath } from "./site-data";
 const interests = [
   {
     index: "01",
-    zhTitle: "碳排放时滞性",
-    enTitle: "Carbon Emission Time Lags",
-    zhText: "关注碳排放影响在时间维度上的滞后特征与量化分析。",
-    enText: "Exploring delayed effects and quantitative patterns of carbon emissions over time.",
+    zhTitle: "组合优化",
+    enTitle: "Combinatorial Optimization",
+    zhText: "关注离散决策问题的数学建模、算法设计与高效求解。",
+    enText: "Studying mathematical formulations, algorithm design, and efficient solution methods for discrete decision problems.",
   },
   {
     index: "02",
-    zhTitle: "数学建模",
-    enTitle: "Mathematical Modeling",
-    zhText: "将统计分析、优化方法与编程用于解决真实复杂问题。",
-    enText: "Applying statistics, optimization, and programming to complex real-world problems.",
+    zhTitle: "AI4s",
+    enTitle: "AI for Science",
+    zhText: "关注人工智能方法在科学问题建模、分析与发现中的应用。",
+    enText: "Exploring how artificial intelligence can support scientific modeling, analysis, and discovery.",
   },
   {
     index: "03",
-    zhTitle: "数学竞赛",
-    enTitle: "Mathematics Competitions",
-    zhText: "通过竞赛掌握分析数学问题的能力，持续提升数学思维与问题解决能力。",
-    enText: "Using competitions to strengthen mathematical analysis, mathematical thinking, and problem-solving.",
+    zhTitle: "数学建模与竞赛",
+    enTitle: "Mathematical Modeling & Competitions",
+    zhText: "将统计分析、优化方法与编程用于竞赛和真实复杂问题。",
+    enText: "Applying statistics, optimization, and programming to competitions and complex real-world problems.",
   },
 ];
 
