@@ -155,6 +155,28 @@ function PortfolioPage() {
       <section className="content-section">
         <div className="section-heading">
           <span>02</span>
+          <h2><Localized zh="课程项目作品" en="Course Projects" /></h2>
+        </div>
+        <div className="document-stack">
+          <DocumentCard
+            file="/docs/2026-neural-network-fault-diagnosis-review.pdf"
+            meta={{ zh: "2026 · 课程项目 · 10 页", en: "2026 · Course Project · 10 pages" }}
+            title={{
+              zh: "复杂工况下神经网络可靠故障诊断综述",
+              en: "Review of Reliable Neural-Network Fault Diagnosis Under Complex Conditions",
+            }}
+            description={{
+              zh: "课程项目综述，聚焦分布漂移、类别不平衡与标签稀缺条件下的神经网络可靠故障诊断。",
+              en: "A course-project review of reliable neural-network fault diagnosis under distribution shift, class imbalance, and limited labels.",
+            }}
+            previewTitle="Course project review on reliable neural-network fault diagnosis"
+          />
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="section-heading">
+          <span>03</span>
           <h2><Localized zh="其他项目分类" en="Additional Project Areas" /></h2>
         </div>
         <div className="portfolio-category-grid">
@@ -165,16 +187,6 @@ function PortfolioPage() {
               <Localized
                 zh="后续收录组合优化、AI4s 与相关统计分析研究。"
                 en="Future work on combinatorial optimization, AI for Science, and related statistical analysis."
-              />
-            </p>
-          </article>
-          <article>
-            <span>C</span>
-            <h3><Localized zh="课程项目" en="Course Projects" /></h3>
-            <p>
-              <Localized
-                zh="后续收录代表性课程论文、报告与数据分析作业。"
-                en="Future selected coursework, reports, and data-analysis assignments."
               />
             </p>
           </article>

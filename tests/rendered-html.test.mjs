@@ -91,11 +91,15 @@ test("keeps the public profile truthful", async () => {
   assert.doesNotMatch(html, /Lorem ipsum|John Doe|Example University/i);
 });
 
-test("publishes competition papers without a CV section", async () => {
+test("publishes competition and course-project papers without a CV section", async () => {
   const portfolioHtml = await (await render("/portfolio")).text();
 
   assert.match(portfolioHtml, /2025-cumcm-nipt\.pdf#view=FitH/);
   assert.match(portfolioHtml, /2026-mathorcup-hyperlipidemia\.pdf#view=FitH/);
+  assert.match(portfolioHtml, /2026-neural-network-fault-diagnosis-review\.pdf#view=FitH/);
+  assert.match(portfolioHtml, /课程项目作品/);
+  assert.match(portfolioHtml, /复杂工况下神经网络可靠故障诊断综述/);
+  assert.match(portfolioHtml, /Course Projects/);
   assert.match(portfolioHtml, /队长，负责建模与代码实现/);
   assert.match(portfolioHtml, /竞赛、课题研究与课程项目作品/);
   assert.doesNotMatch(portfolioHtml, /以下作品均为团队竞赛成果/);
@@ -107,6 +111,7 @@ test("publishes competition papers without a CV section", async () => {
     "../public/avatar-rayan.jpg",
     "../public/docs/2025-cumcm-nipt.pdf",
     "../public/docs/2026-mathorcup-hyperlipidemia.pdf",
+    "../public/docs/2026-neural-network-fault-diagnosis-review.pdf",
   ];
 
   for (const asset of assets) {
