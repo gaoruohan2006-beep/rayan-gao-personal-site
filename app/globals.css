@@ -527,6 +527,70 @@ html[data-language="zh"] .empty-record h3 {
   font-size: 0.9rem;
 }
 
+.transcript-card {
+  margin-top: 24px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  background: linear-gradient(135deg, #f8fbfc 0%, var(--surface) 72%);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--blue);
+  border-radius: 5px;
+  box-shadow: 0 8px 24px rgba(35, 62, 75, 0.04);
+}
+
+.transcript-mark {
+  width: 48px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  background: #eef5f7;
+  border: 1px solid #c7dce4;
+  border-radius: 3px;
+  color: var(--blue-dark);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.transcript-meta {
+  margin: 0;
+  color: var(--blue);
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.transcript-copy h3 {
+  margin: 5px 0 4px;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+}
+
+.transcript-copy > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.79rem;
+}
+
+.transcript-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.transcript-actions .academic-button {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.transcript-actions .text-button {
+  white-space: nowrap;
+}
+
 .achievement-list {
   margin: 0;
   padding: 0;
@@ -1192,6 +1256,24 @@ html[data-language="zh"] .empty-record h3 {
     align-items: flex-start;
     flex-direction: column;
     gap: 14px;
+  }
+
+  .transcript-card {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .transcript-mark {
+    width: 42px;
+    height: 52px;
+  }
+
+  .transcript-actions {
+    grid-column: 2;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
   }
 
   .document-card-header {

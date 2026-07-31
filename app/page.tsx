@@ -39,6 +39,25 @@ const achievements = [
   },
 ];
 
+const coursework = [
+  { zh: "数学分析", en: "Mathematical Analysis" },
+  { zh: "高等代数与解析几何", en: "Advanced Algebra & Analytic Geometry" },
+  { zh: "概率论", en: "Probability Theory" },
+  { zh: "数理统计", en: "Mathematical Statistics" },
+  { zh: "运筹学", en: "Operations Research" },
+  { zh: "数学建模", en: "Mathematical Modeling" },
+  {
+    zh: "基于 Python 的专业实验与设计",
+    en: "Python-Based Professional Practice & Design",
+  },
+  {
+    zh: "人工智能与科学之美",
+    en: "Artificial Intelligence & the Beauty of Science",
+  },
+] as const;
+
+const transcriptFile = "/docs/wust-chinese-academic-transcript.pdf";
+
 export default function Home() {
   return (
     <article className="content-page">
@@ -147,9 +166,53 @@ export default function Home() {
           <h2><Localized zh="代表课程" en="Selected Coursework" /></h2>
         </div>
         <div className="course-list">
-          <span><Localized zh="数学分析" en="Mathematical Analysis" /></span>
-          <span><Localized zh="高等代数" en="Advanced Algebra" /></span>
+          {coursework.map((course) => (
+            <span className="course-pill" key={course.zh}>
+              <Localized zh={course.zh} en={course.en} />
+            </span>
+          ))}
         </div>
+        <article className="transcript-card">
+          <div className="transcript-mark" aria-hidden="true">PDF</div>
+          <div className="transcript-copy">
+            <p className="transcript-meta">
+              <Localized
+                zh="2026 年 7 月 30 日 · 2 页"
+                en="Issued July 30, 2026 · 2 pages"
+              />
+            </p>
+            <h3>
+              <Localized
+                zh="武汉科技大学中文成绩单"
+                en="WUST Chinese Academic Transcript"
+              />
+            </h3>
+            <p>
+              <Localized
+                zh="完整课程、学分及成绩记录。"
+                en="Complete record of coursework, credits, and grades."
+              />
+            </p>
+          </div>
+          <div className="transcript-actions">
+            <a
+              className="academic-button"
+              href={`${withBasePath(transcriptFile)}#view=FitH`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Localized zh="在线查看" en="View transcript" />
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              className="text-button"
+              href={withBasePath(transcriptFile)}
+              download="Rayan-Gao-WUST-Transcript.pdf"
+            >
+              <Localized zh="下载 PDF" en="Download PDF" />
+            </a>
+          </div>
+        </article>
       </section>
 
       <section className="content-section">

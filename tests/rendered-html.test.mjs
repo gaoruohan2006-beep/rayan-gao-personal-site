@@ -91,6 +91,30 @@ test("keeps the public profile truthful", async () => {
   assert.doesNotMatch(html, /Lorem ipsum|John Doe|Example University/i);
 });
 
+test("publishes eight verified courses and the original transcript", async () => {
+  const html = await (await render("/")).text();
+  const coursePills = html.match(/class="course-pill"/g) ?? [];
+
+  assert.equal(coursePills.length, 8);
+  assert.match(html, /数学分析/);
+  assert.match(html, /高等代数与解析几何/);
+  assert.match(html, /概率论/);
+  assert.match(html, /数理统计/);
+  assert.match(html, /运筹学/);
+  assert.match(html, /数学建模/);
+  assert.match(html, /基于 Python 的专业实验与设计/);
+  assert.match(html, /人工智能与科学之美/);
+  assert.match(html, /wust-chinese-academic-transcript\.pdf#view=FitH/);
+  assert.match(html, /武汉科技大学中文成绩单/);
+  assert.match(html, /View transcript/);
+  assert.match(html, /Download PDF/);
+
+  const transcript = await stat(
+    new URL("../public/docs/wust-chinese-academic-transcript.pdf", import.meta.url),
+  );
+  assert.equal(transcript.size, 2_797_590);
+});
+
 test("publishes competition and course-project papers without a CV section", async () => {
   const portfolioHtml = await (await render("/portfolio")).text();
 
