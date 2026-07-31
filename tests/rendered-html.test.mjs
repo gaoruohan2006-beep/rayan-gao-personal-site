@@ -79,6 +79,8 @@ test("keeps the public profile truthful", async () => {
   assert.match(html, /复制小红书号/);
   assert.match(html, /复制抖音号/);
   assert.match(html, /复制邮箱/);
+  assert.match(html, /class="book-icon"/);
+  assert.doesNotMatch(html, />小<\/dt>/);
   assert.match(html, /Copy RedNote ID/);
   assert.match(html, /Copy TikTok ID/);
   assert.doesNotMatch(html, /Rayan_G/);

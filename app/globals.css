@@ -260,6 +260,37 @@ button {
   text-align: center;
 }
 
+.book-icon span {
+  width: 16px;
+  height: 13px;
+  margin: auto;
+  display: block;
+  position: relative;
+}
+
+.book-icon span::before,
+.book-icon span::after {
+  content: "";
+  width: 8px;
+  height: 11px;
+  position: absolute;
+  top: 1px;
+  border: 1.4px solid currentColor;
+  background: var(--paper);
+}
+
+.book-icon span::before {
+  left: 0;
+  border-radius: 3px 0 0 2px;
+  transform: skewY(5deg);
+}
+
+.book-icon span::after {
+  right: 0;
+  border-radius: 0 3px 2px 0;
+  transform: skewY(-5deg);
+}
+
 .author-details dd {
   margin: 0;
   color: #4f5a62;

@@ -112,7 +112,7 @@ export default function RootLayout({
                 </dd>
               </div>
               <div>
-                <dt aria-hidden="true">小</dt>
+                <dt className="book-icon" aria-hidden="true"><span /></dt>
                 <dd>
                   <CopyContact
                     encodedValue={profile.xiaohongshuEncoded}
