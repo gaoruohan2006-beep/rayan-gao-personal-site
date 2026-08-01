@@ -149,9 +149,18 @@ test("publishes competition and course-project papers without a CV section", asy
 test("publishes the update history without visitor tracking", async () => {
   const html = await (await render("/updates")).text();
 
+  assert.match(html, /优化社交账号图标/);
+  assert.match(html, /新增代表课程与成绩单/);
+  assert.match(html, /新增课程项目作品/);
+  assert.match(html, /更新研究方向/);
   assert.match(html, /新增网站维护日志/);
   assert.match(html, /网站框架建立/);
+  assert.match(html, /2026\.07\.31/);
+  assert.match(html, /2026\.07\.30/);
+  assert.match(html, /2026\.07\.29/);
   assert.match(html, /2026\.07\.28/);
+  assert.match(html, /dateTime="2026-07-31"/);
+  assert.match(html, /更新 12/);
   assert.doesNotMatch(html, /访客地图|Visitor Map|visitor-map-card|geojs|api\/visitors/);
   assert.doesNotMatch(html, /Demo ·|演示数据|水印|Watermarked/);
 });

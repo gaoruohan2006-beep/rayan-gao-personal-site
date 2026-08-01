@@ -208,48 +208,84 @@ function PortfolioPage() {
 
 const updateEntries = [
   {
-    zhTitle: "新增网站维护日志",
-    enTitle: "Added the website update log",
-    zhBody: "上线网站更新记录，并进一步精简项目页面。",
-    enBody: "Published the site update log and further refined the Portfolio page.",
+    date: "2026-07-31",
+    zhTitle: "优化社交账号图标",
+    enTitle: "Refined the social contact icon",
+    zhBody: "将小红书联系方式前的文字标识替换为简洁的书本图标。",
+    enBody: "Replaced the text marker beside the RedNote contact with a clean book icon.",
   },
   {
+    date: "2026-07-31",
+    zhTitle: "新增代表课程与成绩单",
+    enTitle: "Added coursework and transcript",
+    zhBody: "代表课程扩充至八门，并加入武汉科技大学中文成绩单的在线查看与下载。",
+    enBody: "Expanded Selected Coursework to eight courses and added online viewing and download for the WUST Chinese transcript.",
+  },
+  {
+    date: "2026-07-30",
+    zhTitle: "新增课程项目作品",
+    enTitle: "Added a course project",
+    zhBody: "新增神经网络可靠故障诊断综述，支持在线预览、下载与新窗口打开。",
+    enBody: "Added a review of reliable neural-network fault diagnosis with preview, download, and open-in-new-window access.",
+  },
+  {
+    date: "2026-07-30",
+    zhTitle: "更新研究方向",
+    enTitle: "Updated research interests",
+    zhBody: "将个人研究方向统一更新为组合优化与 AI4s，并同步中英文介绍。",
+    enBody: "Updated the research focus to combinatorial optimization and AI for Science, with synchronized Chinese and English copy.",
+  },
+  {
+    date: "2026-07-29",
     zhTitle: "优化文档与联系方式",
     enTitle: "Improved documents and contact details",
     zhBody: "优化竞赛作品的版权保护方式，统一邮箱和社交账号的点击复制交互。",
     enBody: "Improved copyright protection for competition papers, with consistent click-to-copy contact actions.",
   },
   {
+    date: "2026-07-29",
     zhTitle: "增强隐私保护",
     enTitle: "Strengthened contact privacy",
     zhBody: "社交账号改为隐藏显示，仅在点击时复制到剪贴板。",
     enBody: "Kept social handles hidden while preserving one-click copy access.",
   },
   {
+    date: "2026-07-29",
     zhTitle: "补充个人资料与项目作品",
     enTitle: "Expanded profile and project work",
     zhBody: "更新头像、研究方向、课程与竞赛经历，并加入两份数学建模作品的在线预览与下载。",
     enBody: "Updated the profile, research interests, coursework, and awards, and added previews and downloads for two modeling papers.",
   },
   {
+    date: "2026-07-28",
+    zhTitle: "新增网站维护日志",
+    enTitle: "Added the website update log",
+    zhBody: "上线网站更新记录，并进一步精简项目页面。",
+    enBody: "Published the site update log and further refined the Portfolio page.",
+  },
+  {
+    date: "2026-07-28",
     zhTitle: "上线中英文切换",
     enTitle: "Launched bilingual modes",
     zhBody: "建立完整的中文与英文界面，并保存访客的语言选择。",
     enBody: "Introduced complete Chinese and English interfaces with persistent language preference.",
   },
   {
+    date: "2026-07-28",
     zhTitle: "采用学术主页结构",
     enTitle: "Adopted an academic portfolio structure",
     zhBody: "参考 Academic Pages 重构导航、个人侧栏与学术内容页面。",
     enBody: "Restructured navigation, profile details, and content pages following Academic Pages conventions.",
   },
   {
+    date: "2026-07-28",
     zhTitle: "启用 GitHub Pages",
     enTitle: "Enabled GitHub Pages",
     zhBody: "配置自动构建与部署流程，使网站可以通过 GitHub 公开访问。",
     enBody: "Configured automated builds and deployment for public access through GitHub Pages.",
   },
   {
+    date: "2026-07-28",
     zhTitle: "网站框架建立",
     enTitle: "Created the website foundation",
     zhBody: "完成个人学术主页的初始框架、浅色视觉系统与响应式布局。",
@@ -277,7 +313,7 @@ function UpdatesPage() {
         <ol className="updates">
           {updateEntries.map((entry, index) => (
             <li key={entry.zhTitle}>
-              <time dateTime="2026-07-28">2026.07.28</time>
+              <time dateTime={entry.date}>{entry.date.replaceAll("-", ".")}</time>
               <div>
                 <strong><Localized zh={entry.zhTitle} en={entry.enTitle} /></strong>
                 <p><Localized zh={entry.zhBody} en={entry.enBody} /></p>
